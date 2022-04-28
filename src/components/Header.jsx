@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import { Dropdown } from 'react-bootstrap'
+
 import * as actionAuth from '../store/actionCreator/authAction'
 
 function Header() {
@@ -54,7 +56,10 @@ function Header() {
                         {/* <!--end::Aside  toggle--> */}
                         {/* <!--begin::Logo--> */}
                         <a href="../../demo14/dist/index.html">
-                            <img alt="Logo" src="assets/media/logos/logo-2.svg" className="h-25px h-lg-30px" />
+                            <img alt="Logo" src="https://meroshare.cdsc.com.np/assets/img/brand-dash-icon.png" className="h-25px h-lg-50px" />
+
+                            <span class="badge badge-light-danger">Revamp</span>
+
                         </a>
 
                     </div>
@@ -64,10 +69,8 @@ function Header() {
                         {/* <!--begin::Topbar--> */}
                         <div className="d-flex align-items-center flex-shrink-0">
 
-                            {/* <!--begin::User--> */}
-                            <div className="d-flex align-items-center ms-1" id="kt_header_user_menu_toggle">
-                                {/* <!--begin::User info--> */}
-                                <div className="btn btn-flex align-items-center bg-hover-white bg-hover-opacity-10 py-2 px-2 px-md-3" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                            <Dropdown className="d-flex align-items-center ms-1">
+                                <Dropdown.Toggle className="btn btn-flex align-items-center bg-hover-white bg-hover-opacity-10 py-2 px-2 px-md-3" variant='' id="dropdown-basic">
                                     {/* <!--begin::Name--> */}
                                     <div className="d-none d-md-flex flex-column align-items-end justify-content-center me-2 me-md-4">
                                         <span className="text-muted fs-8 fw-bold lh-1 mb-1">Max</span>
@@ -79,10 +82,10 @@ function Header() {
                                         <img src="assets/media/avatars/150-26.jpg" alt="image" />
                                     </div>
                                     {/* <!--end::Symbol--> */}
-                                </div>
-                                {/* <!--end::User info--> */}
-                                {/* <!--begin::Menu--> */}
-                                <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px">
+
                                     {/* <!--begin::Menu item--> */}
                                     <div className="menu-item px-3">
                                         <div className="menu-content d-flex align-items-center px-3">
@@ -136,15 +139,15 @@ function Header() {
                                     {/* <!--end::Menu separator--> */}
                                     {/* <!--begin::Menu item--> */}
                                     <div className="menu-item px-5">
-                                        <a href="../../demo14/dist/authentication/flows/basic/sign-in.html" className="menu-link px-5">Sign Out</a>
+                                        <a role="button" onClick={()=>dispatch(actionAuth.signout())} className="menu-link px-5">Sign Out</a>
                                     </div>
                                     {/* <!--end::Menu item--> */}
 
 
-                                </div>
-                                {/* <!--end::Menu--> */}
-                            </div>
-                            {/* <!--end::User --> */}
+
+
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
                         {/* <!--end::Topbar--> */}
                     </div>

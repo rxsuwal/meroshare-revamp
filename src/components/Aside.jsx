@@ -11,70 +11,100 @@ const Aside = () => {
                     <div className="hover-scroll-overlay-y my-5 pe-4 me-n4">
                         {/* <!--begin::Menu--> */}
                         <div className="menu menu-column menu-rounded fw-bold fs-6">
-                            <div className="menu-item">
-                                <div className="menu-content pb-2">
-                                    <span className="menu-section text-muted text-uppercase fs-8 ls-1">Dashboard</span>
+                            <div>
+                                <div className="menu-item">
+                                    <div className="menu-content pb-2">
+                                        <span className="menu-section text-muted text-uppercase fs-8 ls-1">General</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="menu-item">
-                                <a className="menu-link" href="../../demo14/dist/index.html">
-                                    <span className="menu-icon">
-                                        {/* <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg--> */}
-                                        <span className="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
-                                                <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="black" />
-                                                <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="black" />
-                                                <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="black" />
-                                            </svg>
+                                <div className="menu-item">
+                                    <a className="menu-link" href="../../demo14/dist/index.html">
+                                        <span className="menu-icon">
+                                            {/* <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg--> */}
+                                            <span className="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
+                                                    <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="black" />
+                                                    <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="black" />
+                                                    <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="black" />
+                                                </svg>
+                                            </span>
+                                            {/* <!--end::Svg Icon--> */}
                                         </span>
-                                        {/* <!--end::Svg Icon--> */}
-                                    </span>
-                                    <span className="menu-title">Default</span>
-                                </a>
-                            </div>
-                            <div className="menu-item">
-                                <a className="menu-link" href="../../demo14/dist/landing.html">
-                                    <span className="menu-icon">
-                                        {/* <!--begin::Svg Icon | path: icons/duotune/communication/com001.svg--> */}
-                                        <span className="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path opacity="0.3" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="black" />
-                                                <path d="M19 10.4C19 10.3 19 10.2 19 10C19 8.9 18.1 8 17 8H16.9C15.6 6.2 14.6 4.29995 13.9 2.19995C13.3 2.09995 12.6 2 12 2C11.9 2 11.8 2 11.7 2C12.4 4.6 13.5 7.10005 15.1 9.30005C15 9.50005 15 9.7 15 10C15 11.1 15.9 12 17 12C17.1 12 17.3 12 17.4 11.9C18.6 13 19.9 14 21.4 14.8C21.4 14.8 21.5 14.8 21.5 14.9C21.7 14.2 21.8 13.5 21.9 12.7C20.9 12.1 19.9 11.3 19 10.4Z" fill="black" />
-                                                <path d="M12 15C11 13.1 10.2 11.2 9.60001 9.19995C9.90001 8.89995 10 8.4 10 8C10 7.1 9.40001 6.39998 8.70001 6.09998C8.40001 4.99998 8.20001 3.90005 8.00001 2.80005C7.30001 3.10005 6.70001 3.40002 6.20001 3.90002C6.40001 4.80002 6.50001 5.6 6.80001 6.5C6.40001 6.9 6.10001 7.4 6.10001 8C6.10001 9 6.80001 9.8 7.80001 10C8.30001 11.6 9.00001 13.2 9.70001 14.7C7.10001 13.2 4.70001 11.5 2.40001 9.5C2.20001 10.3 2.10001 11.1 2.10001 11.9C4.60001 13.9 7.30001 15.7 10.1 17.2C10.2 18.2 11 19 12 19C12.6 20 13.2 20.9 13.9 21.8C14.6 21.7 15.3 21.5 15.9 21.2C15.4 20.5 14.9 19.8 14.4 19.1C15.5 19.5 16.5 19.9 17.6 20.2C18.3 19.8 18.9 19.2 19.4 18.6C17.6 18.1 15.7 17.5 14 16.7C13.9 15.8 13.1 15 12 15Z" fill="black" />
-                                            </svg>
+                                        <span className="menu-title">Home</span>
+                                    </a>
+                                </div>
+                                <div className="menu-item">
+                                    <a className="menu-link" href="../../demo14/dist/landing.html">
+                                        <span className="menu-icon">
+                                            {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen049.svg--> */}
+                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z" fill="black" />
+                                                <path d="M12.0006 11.1542C13.1434 11.1542 14.0777 10.22 14.0777 9.0771C14.0777 7.93424 13.1434 7 12.0006 7C10.8577 7 9.92348 7.93424 9.92348 9.0771C9.92348 10.22 10.8577 11.1542 12.0006 11.1542Z" fill="black" />
+                                                <path d="M15.5652 13.814C15.5108 13.6779 15.4382 13.551 15.3566 13.4331C14.9393 12.8163 14.2954 12.4081 13.5697 12.3083C13.479 12.2993 13.3793 12.3174 13.3067 12.3718C12.9257 12.653 12.4722 12.7981 12.0006 12.7981C11.5289 12.7981 11.0754 12.653 10.6944 12.3718C10.6219 12.3174 10.5221 12.2902 10.4314 12.3083C9.70578 12.4081 9.05272 12.8163 8.64456 13.4331C8.56293 13.551 8.49036 13.687 8.43595 13.814C8.40875 13.8684 8.41781 13.9319 8.44502 13.9864C8.51759 14.1133 8.60828 14.2403 8.68991 14.3492C8.81689 14.5215 8.95295 14.6757 9.10715 14.8208C9.23413 14.9478 9.37925 15.0657 9.52439 15.1836C10.2409 15.7188 11.1026 15.9999 11.9915 15.9999C12.8804 15.9999 13.7421 15.7188 14.4586 15.1836C14.6038 15.0748 14.7489 14.9478 14.8759 14.8208C15.021 14.6757 15.1661 14.5215 15.2931 14.3492C15.3838 14.2312 15.4655 14.1133 15.538 13.9864C15.5833 13.9319 15.5924 13.8684 15.5652 13.814Z" fill="black" />
+                                            </svg></span>
+                                            {/* <!--end::Svg Icon--> */}
                                         </span>
-                                        {/* <!--end::Svg Icon--> */}
-                                    </span>
-                                    <span className="menu-title">Landing Page</span>
-                                </a>
+                                        <span className="menu-title">My Details</span>
+                                    </a>
+                                </div>
+
                             </div>
-                            <div className="menu-item">
-                                <div className="menu-content pt-8 pb-2">
-                                    <span className="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
+                            <div>
+                                <div className="menu-item">
+                                    <div className="menu-content pt-8 pb-2">
+                                        <span className="menu-section text-muted text-uppercase fs-8 ls-1">Shares</span>
+                                    </div>
+                                </div>
+                                <div className="menu-item">
+                                    <a className="menu-link" href="../../demo14/dist/landing.html">
+                                        <span className="menu-icon">
+                                            {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen032.svg--> */}
+                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <rect x="8" y="9" width="3" height="10" rx="1.5" fill="black" />
+                                                <rect opacity="0.5" x="13" y="5" width="3" height="14" rx="1.5" fill="black" />
+                                                <rect x="18" y="11" width="3" height="8" rx="1.5" fill="black" />
+                                                <rect x="3" y="13" width="3" height="6" rx="1.5" fill="black" />
+                                            </svg></span>
+                                            {/* <!--end::Svg Icon--> */}
+                                        </span>
+                                        <span className="menu-title">My Shares</span>
+                                    </a>
+                                </div>
+                                <div className="menu-item">
+                                    <a className="menu-link" href="../../demo14/dist/landing.html">
+                                        <span className="menu-icon">
+                                            {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/finance/fin006.svg--> */}
+                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path opacity="0.3" d="M20 15H4C2.9 15 2 14.1 2 13V7C2 6.4 2.4 6 3 6H21C21.6 6 22 6.4 22 7V13C22 14.1 21.1 15 20 15ZM13 12H11C10.5 12 10 12.4 10 13V16C10 16.5 10.4 17 11 17H13C13.6 17 14 16.6 14 16V13C14 12.4 13.6 12 13 12Z" fill="black" />
+                                                <path d="M14 6V5H10V6H8V5C8 3.9 8.9 3 10 3H14C15.1 3 16 3.9 16 5V6H14ZM20 15H14V16C14 16.6 13.5 17 13 17H11C10.5 17 10 16.6 10 16V15H4C3.6 15 3.3 14.9 3 14.7V18C3 19.1 3.9 20 5 20H19C20.1 20 21 19.1 21 18V14.7C20.7 14.9 20.4 15 20 15Z" fill="black" />
+                                            </svg></span>
+                                            {/* <!--end::Svg Icon--> */}
+                                        </span>
+                                        <span className="menu-title">My Portfolio</span>
+                                    </a>
                                 </div>
                             </div>
 
-                            <div className="menu-item">
-                                <div className="menu-content pt-8 pb-2">
-                                    <span className="menu-section text-muted text-uppercase fs-8 ls-1">Apps</span>
+                            <div>
+                                <div className="menu-item">
+                                    <div className="menu-content pt-8 pb-2">
+                                        <span className="menu-section text-muted text-uppercase fs-8 ls-1">New Issue</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="menu-item">
-                                <a className="menu-link" href="../../demo14/dist/apps/calendar.html">
-                                    <span className="menu-icon">
-                                        {/* <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg--> */}
-                                        <span className="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path opacity="0.3" d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z" fill="black" />
-                                                <path d="M6 6C5.4 6 5 5.6 5 5V3C5 2.4 5.4 2 6 2C6.6 2 7 2.4 7 3V5C7 5.6 6.6 6 6 6ZM11 5V3C11 2.4 10.6 2 10 2C9.4 2 9 2.4 9 3V5C9 5.6 9.4 6 10 6C10.6 6 11 5.6 11 5ZM15 5V3C15 2.4 14.6 2 14 2C13.4 2 13 2.4 13 3V5C13 5.6 13.4 6 14 6C14.6 6 15 5.6 15 5ZM19 5V3C19 2.4 18.6 2 18 2C17.4 2 17 2.4 17 3V5C17 5.6 17.4 6 18 6C18.6 6 19 5.6 19 5Z" fill="black" />
-                                                <path d="M8.8 13.1C9.2 13.1 9.5 13 9.7 12.8C9.9 12.6 10.1 12.3 10.1 11.9C10.1 11.6 10 11.3 9.8 11.1C9.6 10.9 9.3 10.8 9 10.8C8.8 10.8 8.59999 10.8 8.39999 10.9C8.19999 11 8.1 11.1 8 11.2C7.9 11.3 7.8 11.4 7.7 11.6C7.6 11.8 7.5 11.9 7.5 12.1C7.5 12.2 7.4 12.2 7.3 12.3C7.2 12.4 7.09999 12.4 6.89999 12.4C6.69999 12.4 6.6 12.3 6.5 12.2C6.4 12.1 6.3 11.9 6.3 11.7C6.3 11.5 6.4 11.3 6.5 11.1C6.6 10.9 6.8 10.7 7 10.5C7.2 10.3 7.49999 10.1 7.89999 10C8.29999 9.90003 8.60001 9.80003 9.10001 9.80003C9.50001 9.80003 9.80001 9.90003 10.1 10C10.4 10.1 10.7 10.3 10.9 10.4C11.1 10.5 11.3 10.8 11.4 11.1C11.5 11.4 11.6 11.6 11.6 11.9C11.6 12.3 11.5 12.6 11.3 12.9C11.1 13.2 10.9 13.5 10.6 13.7C10.9 13.9 11.2 14.1 11.4 14.3C11.6 14.5 11.8 14.7 11.9 15C12 15.3 12.1 15.5 12.1 15.8C12.1 16.2 12 16.5 11.9 16.8C11.8 17.1 11.5 17.4 11.3 17.7C11.1 18 10.7 18.2 10.3 18.3C9.9 18.4 9.5 18.5 9 18.5C8.5 18.5 8.1 18.4 7.7 18.2C7.3 18 7 17.8 6.8 17.6C6.6 17.4 6.4 17.1 6.3 16.8C6.2 16.5 6.10001 16.3 6.10001 16.1C6.10001 15.9 6.2 15.7 6.3 15.6C6.4 15.5 6.6 15.4 6.8 15.4C6.9 15.4 7.00001 15.4 7.10001 15.5C7.20001 15.6 7.3 15.6 7.3 15.7C7.5 16.2 7.7 16.6 8 16.9C8.3 17.2 8.6 17.3 9 17.3C9.2 17.3 9.5 17.2 9.7 17.1C9.9 17 10.1 16.8 10.3 16.6C10.5 16.4 10.5 16.1 10.5 15.8C10.5 15.3 10.4 15 10.1 14.7C9.80001 14.4 9.50001 14.3 9.10001 14.3C9.00001 14.3 8.9 14.3 8.7 14.3C8.5 14.3 8.39999 14.3 8.39999 14.3C8.19999 14.3 7.99999 14.2 7.89999 14.1C7.79999 14 7.7 13.8 7.7 13.7C7.7 13.5 7.79999 13.4 7.89999 13.2C7.99999 13 8.2 13 8.5 13H8.8V13.1ZM15.3 17.5V12.2C14.3 13 13.6 13.3 13.3 13.3C13.1 13.3 13 13.2 12.9 13.1C12.8 13 12.7 12.8 12.7 12.6C12.7 12.4 12.8 12.3 12.9 12.2C13 12.1 13.2 12 13.6 11.8C14.1 11.6 14.5 11.3 14.7 11.1C14.9 10.9 15.2 10.6 15.5 10.3C15.8 10 15.9 9.80003 15.9 9.70003C15.9 9.60003 16.1 9.60004 16.3 9.60004C16.5 9.60004 16.7 9.70003 16.8 9.80003C16.9 9.90003 17 10.2 17 10.5V17.2C17 18 16.7 18.4 16.2 18.4C16 18.4 15.8 18.3 15.6 18.2C15.4 18.1 15.3 17.8 15.3 17.5Z" fill="black" />
-                                            </svg>
+                                <div className="menu-item">
+                                    <a className="menu-link" href="../../demo14/dist/apps/calendar.html">
+                                        <span className="menu-icon">
+                                            {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/maps/map004.svg--> */}
+                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path opacity="0.3" d="M18.4 5.59998C21.9 9.09998 21.9 14.8 18.4 18.3C14.9 21.8 9.2 21.8 5.7 18.3L18.4 5.59998Z" fill="black" />
+                                                <path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM19.9 11H13V8.8999C14.9 8.6999 16.7 8.00005 18.1 6.80005C19.1 8.00005 19.7 9.4 19.9 11ZM11 19.8999C9.7 19.6999 8.39999 19.2 7.39999 18.5C8.49999 17.7 9.7 17.2001 11 17.1001V19.8999ZM5.89999 6.90002C7.39999 8.10002 9.2 8.8 11 9V11.1001H4.10001C4.30001 9.4001 4.89999 8.00002 5.89999 6.90002ZM7.39999 5.5C8.49999 4.7 9.7 4.19998 11 4.09998V7C9.7 6.8 8.39999 6.3 7.39999 5.5ZM13 17.1001C14.3 17.3001 15.6 17.8 16.6 18.5C15.5 19.3 14.3 19.7999 13 19.8999V17.1001ZM13 4.09998C14.3 4.29998 15.6 4.8 16.6 5.5C15.5 6.3 14.3 6.80002 13 6.90002V4.09998ZM4.10001 13H11V15.1001C9.1 15.3001 7.29999 16 5.89999 17.2C4.89999 16 4.30001 14.6 4.10001 13ZM18.1 17.1001C16.6 15.9001 14.8 15.2 13 15V12.8999H19.9C19.7 14.5999 19.1 16.0001 18.1 17.1001Z" fill="black" />
+                                            </svg></span>
+                                            {/* <!--end::Svg Icon--> */}
                                         </span>
-                                        {/* <!--end::Svg Icon--> */}
-                                    </span>
-                                    <span className="menu-title">Calendar</span>
-                                </a>
+                                        <span className="menu-title">My ASBA</span>
+                                    </a>
+                                </div>
                             </div>
 
 

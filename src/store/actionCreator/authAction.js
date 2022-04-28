@@ -1,7 +1,7 @@
 import * as actionType from "../actionType"
 
 // AUTH CHECK
-export const authCheck =()=>{
+export const authCheck = () => {
 
     // GET DATA FROM LOCAL STORAGE
     let authData = localStorage.getItem('user')
@@ -11,8 +11,8 @@ export const authCheck =()=>{
 
     console.log(data)
 
-    return{
-        type:actionType.SIGN_IN,
+    return {
+        type: actionType.SIGN_IN,
         payload: data
     }
 }
@@ -21,22 +21,31 @@ export const authCheck =()=>{
 // SIGN IN
 export const signin = (payload) => {
 
+
     return {
         type: actionType.SIGN_IN,
         payload: payload
     }
 }
+// SIGN OUT
+export const signout = () => {
+    localStorage.removeItem('user')
+
+    return {
+        type: actionType.SIGN_OUT,
+    }
+}
 
 
 // REGISTER
-export const register =(payload)=>{
+export const register = (payload) => {
 
     // SET DATA ON LOCAL STORAGE
     localStorage.setItem('user', JSON.stringify(payload))
 
 
-    return{
-        type:actionType.REGISTER,
-        payload:payload
+    return {
+        type: actionType.REGISTER,
+        payload: payload
     }
 }

@@ -10,6 +10,9 @@ const reducer = (state = initialState, action) => {
         case actionType.SIGN_IN:
             return { ...state, user: action.payload }
 
+        case actionType.SIGN_OUT:
+            return { ...state, user: null }
+
         default:
             return state
     }
