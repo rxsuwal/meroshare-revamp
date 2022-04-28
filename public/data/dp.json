@@ -1,0 +1,29 @@
+{
+    "dpList": [
+        {
+            "id": 1,
+            "name": "Agrawal Securities",
+            "value": 1001
+        },
+        {
+            "id": 2,
+            "name": "Butwal Bikas Bank",
+            "value": 1002
+        },
+        {
+            "id": 3,
+            "name": "Citizens Capital Bank",
+            "value": 1003
+        },
+        {
+            "id": 4,
+            "name": "Development Bank of Nepal",
+            "value": 1004
+        },{
+            "id": 5,
+            "name": "Nabil Bank",
+            "value": 1005
+        }
+     
+    ]
+}

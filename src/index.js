@@ -4,10 +4,40 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import authReducer from './store/reducer/authReducer'
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+
+const rootReducer = combineReducers({
+  auth: authReducer
+})
+
+
+const logger = store => {
+  return next => {
+    return action => {
+      console.log('Middleware Dispatching..', action);
+      const result = next(action);
+      console.log("Middleware next state", store.getState())
+      return result
+    }
+  }
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)))
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 

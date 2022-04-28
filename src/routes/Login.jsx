@@ -1,6 +1,71 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector, connect } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
-function Login() {
+import * as actionAuth from "../store/actionCreator/authAction"
+
+
+function Login(props) {
+
+  // STATES
+  const [loginCredential, setloginCredential] = useState({})
+
+  // STORE SELECTOR
+  const auth = useSelector(state => state.auth)
+
+  // ACTION DISPATCH
+  const dispatch = useDispatch()
+
+  // NAVIGATE
+  let navigate = useNavigate()
+
+
+  useEffect(() => {
+    // CHECK AUTH
+    dispatch(actionAuth.authCheck())
+
+  }, [])
+
+
+  useEffect(() => {
+    if (auth.user != null) {
+      navigate('/dashboard')
+    }
+  }, [auth])
+
+
+
+
+
+  // FUNCTIONS FOR ACTIONS
+
+  // FORMDATA
+  const formDataOnChange = (e) => {
+    setloginCredential(prevValues => {
+      return {
+        ...prevValues,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+
+  // SIGNIN ON SUBMIT
+  const signIN = () => {
+    console.log('signIN')
+
+    localStorage.setItem('user', JSON.stringify(loginCredential))
+
+    // dispatch(actionAuth.signin(loginCredential))
+
+    // actionAuth.signin(loginCredential)
+
+    navigate("/dashboard")
+
+
+  }
+
+
   return (
     // < !--begin:: Main-- >
     <div className="d-flex flex-column flex-root">
@@ -16,7 +81,7 @@ function Login() {
           {/* <!--begin::Wrapper--> */}
           <div className="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
             {/* <!--begin::Form--> */}
-            <form className="form w-100" noValidate="noValidate" id="kt_sign_in_form" action="#">
+            <form className="form w-100" noValidate="noValidate" id="kt_sign_in_form" >
               {/* <!--begin::Heading--> */}
               <div className="text-center mb-10">
                 {/* <!--begin::Title--> */}
@@ -24,25 +89,12 @@ function Login() {
                 {/* <!--end::Title--> */}
                 {/* <!--begin::Link--> */}
                 <div className="text-gray-400 fw-bold fs-4">New Here?
-                  <a href="../../demo14/dist/authentication/layouts/basic/sign-up.html" className="link-primary fw-bolder">Create an Account</a></div>
+
+                  <Link to='/register' className="link-primary fw-bolder">Create an Account</Link>
+                </div>
                 {/* <!--end::Link--> */}
               </div>
               {/* <!--begin::Heading--> */}
-
-              {/* <!--begin::Input group Depository Participant--> */}
-              <div className="fv-row mb-10">
-                {/* <!--begin::Label--> */}
-                <label className="form-label fs-6 fw-bolder text-dark">Depository Participant</label>
-                {/* <!--end::Label--> */}
-                {/* <!--begin::Input--> */}
-                <select className="form-select form-control" data-control="select2" data-placeholder="Select an option">
-                  <option></option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                </select>
-                {/* <!--end::Input--> */}
-              </div>
-              {/* <!--end::Input group Depository Participant--> */}
 
               {/* <!--begin::Input group username--> */}
               <div className="fv-row mb-10">
@@ -50,7 +102,7 @@ function Login() {
                 <label className="form-label fs-6 fw-bolder text-dark">Username</label>
                 {/* <!--end::Label--> */}
                 {/* <!--begin::Input--> */}
-                <input className="form-control form-control-lg form-control-solid" type="text" name="email" autoComplete="off" />
+                <input className="form-control form-control-lg form-control-solid" type="text" name="email" autoComplete='on' value={loginCredential?.username} onChange={formDataOnChange} />
                 {/* <!--end::Input--> */}
               </div>
               {/* <!--end::Input group username--> */}
@@ -68,7 +120,7 @@ function Login() {
                 </div>
                 {/* <!--end::Wrapper--> */}
                 {/* <!--begin::Input--> */}
-                <input className="form-control form-control-lg form-control-solid" type="password" name="password" autoComplete="off" />
+                <input className="form-control form-control-lg form-control-solid" type="password" name="password" autoComplete='on' value={loginCredential?.password} onChange={formDataOnChange} />
                 {/* <!--end::Input--> */}
               </div>
               {/* <!--end::Input group password--> */}
@@ -77,7 +129,7 @@ function Login() {
               {/* <!--begin::Actions--> */}
               <div className="text-center">
                 {/* <!--begin::Submit button--> */}
-                <button type="submit" id="kt_sign_in_submit" className="btn btn-lg btn-primary w-100 mb-5">
+                <button type="submit" id="kt_sign_in_submit" className="btn btn-lg btn-primary w-100 mb-5" onClick={signIN}>
                   <span className="indicator-label">Continue</span>
                   <span className="indicator-progress">Please wait...
                     <span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -109,5 +161,7 @@ function Login() {
     //* <!--end:: Main-- >
   )
 }
+
+
 
 export default Login
