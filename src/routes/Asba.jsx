@@ -1,14 +1,12 @@
 import React from 'react'
 import Layout from '../components/Layout'
 
-function Dashboard() {
+const Asba = () => {
   return (
     <Layout>
-
-     <h1>DASHBOARD</h1>
-
+        <h1>ASBA</h1>
     </Layout>
   )
 }
 
-export default Dashboard
+export default Asba

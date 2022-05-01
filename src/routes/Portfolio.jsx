@@ -1,14 +1,12 @@
 import React from 'react'
 import Layout from '../components/Layout'
 
-function Dashboard() {
+function Portfolio() {
   return (
     <Layout>
-
-     <h1>DASHBOARD</h1>
-
+        <h1>Portfolio</h1>
     </Layout>
   )
 }
 
-export default Dashboard
+export default Portfolio

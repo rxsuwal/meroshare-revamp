@@ -1,10 +1,26 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-const Aside = () => {
+const asideStye ={
+    display:"block",
+    position:"fixed",
+    top: 0,
+    left: 0,
+    zIndex: 100,
+    bottom: 0
+    
+}
+
+const Aside = (props) => {
+
+    
+
+
     return (
         <>
-            {/* <!--begin::Aside--> */}
-            <div className="aside card" >
+
+            <div onClick={props.clicked} className='bg-secondary bg-opacity-75 h-100 w-100' style={props.mobileMenuToggle ? asideStye : {display:'none'}}></div>
+            <div className="aside card" style={props.mobileMenuToggle ? asideStye : null} >
                 {/* <!--begin::Aside menu--> */}
                 <div className="aside-menu flex-column-fluid px-5">
                     {/* <!--begin::Aside Menu--> */}
@@ -18,7 +34,7 @@ const Aside = () => {
                                     </div>
                                 </div>
                                 <div className="menu-item">
-                                    <a className="menu-link" href="../../demo14/dist/index.html">
+                                    <NavLink to={'/dashboard'} className={({ isActive }) => isActive ? "menu-link active" : "menu-link"}>
                                         <span className="menu-icon">
                                             {/* <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg--> */}
                                             <span className="svg-icon svg-icon-2">
@@ -32,10 +48,10 @@ const Aside = () => {
                                             {/* <!--end::Svg Icon--> */}
                                         </span>
                                         <span className="menu-title">Home</span>
-                                    </a>
+                                    </NavLink>
                                 </div>
                                 <div className="menu-item">
-                                    <a className="menu-link" href="../../demo14/dist/landing.html">
+                                    <NavLink to={'/details'} className={({ isActive }) => isActive ? "menu-link active" : "menu-link"} >
                                         <span className="menu-icon">
                                             {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen049.svg--> */}
                                             <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -46,7 +62,7 @@ const Aside = () => {
                                             {/* <!--end::Svg Icon--> */}
                                         </span>
                                         <span className="menu-title">My Details</span>
-                                    </a>
+                                    </NavLink>
                                 </div>
 
                             </div>
@@ -57,7 +73,7 @@ const Aside = () => {
                                     </div>
                                 </div>
                                 <div className="menu-item">
-                                    <a className="menu-link" href="../../demo14/dist/landing.html">
+                                    <NavLink to={'/shares'} className={({ isActive }) => isActive ? "menu-link active" : "menu-link"}>
                                         <span className="menu-icon">
                                             {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen032.svg--> */}
                                             <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -69,10 +85,10 @@ const Aside = () => {
                                             {/* <!--end::Svg Icon--> */}
                                         </span>
                                         <span className="menu-title">My Shares</span>
-                                    </a>
+                                    </NavLink>
                                 </div>
                                 <div className="menu-item">
-                                    <a className="menu-link" href="../../demo14/dist/landing.html">
+                                    <NavLink to={'/portfolio'} className={({ isActive }) => isActive ? "menu-link active" : "menu-link"} >
                                         <span className="menu-icon">
                                             {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/finance/fin006.svg--> */}
                                             <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -82,7 +98,7 @@ const Aside = () => {
                                             {/* <!--end::Svg Icon--> */}
                                         </span>
                                         <span className="menu-title">My Portfolio</span>
-                                    </a>
+                                    </NavLink>
                                 </div>
                             </div>
 
@@ -93,7 +109,7 @@ const Aside = () => {
                                     </div>
                                 </div>
                                 <div className="menu-item">
-                                    <a className="menu-link" href="../../demo14/dist/apps/calendar.html">
+                                    <NavLink to={'/asba'} className={({ isActive }) => isActive ? "menu-link active" : "menu-link"}>
                                         <span className="menu-icon">
                                             {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/maps/map004.svg--> */}
                                             <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -103,7 +119,7 @@ const Aside = () => {
                                             {/* <!--end::Svg Icon--> */}
                                         </span>
                                         <span className="menu-title">My ASBA</span>
-                                    </a>
+                                    </NavLink>
                                 </div>
                             </div>
 
@@ -129,7 +145,6 @@ const Aside = () => {
                 </div>
                 {/* <!--end::Footer--> */}
             </div>
-            {/* <!--end::Aside--> */}
         </>
     )
 }

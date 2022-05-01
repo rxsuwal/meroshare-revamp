@@ -6,7 +6,7 @@ import { Dropdown } from 'react-bootstrap'
 
 import * as actionAuth from '../store/actionCreator/authAction'
 
-function Header() {
+function Header(props) {
 
     // STORE STATES
     const auth = useSelector((state) => state.auth)
@@ -19,17 +19,10 @@ function Header() {
 
     useEffect(() => {
         // AUTH STATE CHECK
-        dispatch(actionAuth.authCheck())
+        dispatch(actionAuth.authCheck(navigate))
 
     }, [])
 
-    useEffect(() => {
-
-        console.log(auth.user)
-        if (auth.user === null) {
-            navigate('/')
-        }
-    }, [auth])
 
 
 
@@ -43,7 +36,7 @@ function Header() {
                     {/* <!--begin::Brand--> */}
                     <div className="d-flex align-items-center me-5">
                         {/* <!--begin::Aside toggle--> */}
-                        <div className="d-lg-none btn btn-icon btn-active-color-white w-30px h-30px ms-n2 me-3" id="kt_aside_toggle">
+                        <div className="d-lg-none btn btn-icon btn-active-color-white w-30px h-30px ms-n2 me-3" onClick={props.click}>
                             {/* <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg--> */}
                             <span className="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -97,7 +90,7 @@ function Header() {
                                             {/* <!--begin::Username--> */}
                                             <div className="d-flex flex-column">
                                                 <div className="fw-bolder d-flex align-items-center fs-5">Max Smith
-                                                    <span className="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span></div>
+                                                    <span className="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">User</span></div>
                                                 <a href="" className="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
                                             </div>
                                             {/* <!--end::Username--> */}
@@ -139,7 +132,7 @@ function Header() {
                                     {/* <!--end::Menu separator--> */}
                                     {/* <!--begin::Menu item--> */}
                                     <div className="menu-item px-5">
-                                        <a role="button" onClick={()=>dispatch(actionAuth.signout())} className="menu-link px-5">Sign Out</a>
+                                        <a role="button" onClick={() => dispatch(actionAuth.signout(navigate))} className="menu-link px-5">Sign Out</a>
                                     </div>
                                     {/* <!--end::Menu item--> */}
 
