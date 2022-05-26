@@ -35,6 +35,7 @@ export const Register = (props) => {
 
 
     const DisplayingErrorMessagesSchema = Yup.object().shape({
+        name: Yup.string().required('Name Required'),
         email: Yup.string().email('Invalid email').required('Email Required'),
         password: Yup.string()
             .min(8, 'Minimum 8 Characters !')
@@ -90,6 +91,7 @@ export const Register = (props) => {
 
                                 <Formik
                                     initialValues={{
+                                        name: "",
                                         email: '',
                                         password: '',
                                         toc: ''
@@ -115,7 +117,18 @@ export const Register = (props) => {
                                             </div>
                                             {/*<!--end::Heading-->*/}
 
+                                            {/*<!--begin::Input group-->*/}
 
+                                            <div className="fv-row mb-7">
+                                                <label className="form-label fw-bolder text-dark fs-6">Email</label>
+
+                                                <Field className="form-control form-control-lg form-control-solid" type="text" name="name" placeholder="name" />
+                                                <ErrorMessage name="name" component="span" className='d-block text-danger' />
+
+                                            </div>
+                                            {/*<!--end::Input group-->*/}
+
+                                            {/*<!--begin::Input group-->*/}
 
                                             <div className="fv-row mb-7">
                                                 <label className="form-label fw-bolder text-dark fs-6">Email</label>

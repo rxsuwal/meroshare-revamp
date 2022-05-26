@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 
 function Dashboard() {
   return (
-    <Layout>
+    <Layout pageTitle="Home" pageGroup="General">
 
      <h1>DASHBOARD</h1>
 

@@ -47,28 +47,22 @@ const Layout = (props) => {
                             {/* <!--begin::Container-->*/}
                             <div className="d-flex flex-column flex-column-fluid container-fluid">
 
-                                <div class="toolbar mb-5 mb-lg-7" id="kt_toolbar">
+                                <div className="toolbar mb-5 mb-lg-7" id="kt_toolbar">
                                     {/* <!--begin::Page title--> */}
-                                    <div class="page-title d-flex flex-column me-3">
+                                    <div className="page-title d-flex flex-column me-3">
                                         {/* <!--begin::Title--> */}
-                                        <h1 class="d-flex text-dark fw-bolder my-1 fs-3">Overview</h1>
+                                        <h1 className="d-flex text-dark fw-bolder my-1 fs-3">{props.pageTitle}</h1>
                                         {/* <!--end::Title--> */}
                                         {/* <!--begin::Breadcrumb--> */}
-                                        <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
+                                        <ul className="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
+
                                             {/* <!--begin::Item--> */}
-                                            <li class="breadcrumb-item text-gray-600">
-                                                <a href="../../demo14/dist/index.html" class="text-gray-600 text-hover-primary">Home</a>
-                                            </li>
+                                            <li className="breadcrumb-item text-gray-600">{props.pageGroup}</li>
                                             {/* <!--end::Item--> */}
                                             {/* <!--begin::Item--> */}
-                                            <li class="breadcrumb-item text-gray-600">Pages</li>
+                                            <li className="breadcrumb-item text-gray-600">{props.pageTitle}</li>
                                             {/* <!--end::Item--> */}
-                                            {/* <!--begin::Item--> */}
-                                            <li class="breadcrumb-item text-gray-600">User Profile</li>
-                                            {/* <!--end::Item--> */}
-                                            {/* <!--begin::Item--> */}
-                                            <li class="breadcrumb-item text-gray-500">Overview</li>
-                                            {/* <!--end::Item--> */}
+
                                         </ul>
                                         {/* <!--end::Breadcrumb--> */}
                                     </div>
@@ -81,8 +75,8 @@ const Layout = (props) => {
                                 {/* <!--begin::Post-->*/}
                                 <div className="content flex-column-fluid" id="kt_content">
 
-                                    <div class="card mb-5 mb-xxl-8">
-                                        <div class="card-body pt-9 pb-0">
+                                    <div className="card mb-5 mb-xxl-8">
+                                        <div className="card-body">
                                             {props.children}
 
 

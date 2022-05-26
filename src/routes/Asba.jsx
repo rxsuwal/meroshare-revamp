@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 
 const Asba = () => {
   return (
-    <Layout>
+    <Layout pageTitle="My ASBA" pageGroup="New Issue">
         <h1>ASBA</h1>
     </Layout>
   )

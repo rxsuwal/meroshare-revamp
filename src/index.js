@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import authReducer from './store/reducer/authReducer'
+import loadingReducer from './store/reducer';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
+
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  loading: loadingReducer
 })
 
 
@@ -28,7 +31,7 @@ const logger = store => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)))
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)))
 
 
 ReactDOM.render(

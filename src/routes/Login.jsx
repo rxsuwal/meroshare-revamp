@@ -11,6 +11,16 @@ import * as actionAuth from "../store/actionCreator/authAction"
 
 function Login(props) {
 
+  const [password, setPassword] = useState("password")
+
+  const showHide = () => {
+    if (password == "password") {
+      setPassword("text")
+    } else if (password == "text") {
+      setPassword("password")
+    }
+  }
+
   // ACTION DISPATCH
   const dispatch = useDispatch()
 
@@ -20,7 +30,7 @@ function Login(props) {
   // LIFE CYCLE METHODS
   useEffect(() => {
 
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       navigate('/dashboard')
     }
 
@@ -61,72 +71,68 @@ function Login(props) {
                 dispatch(actionAuth.signin(values, navigate))
               }}
             >
-              {() => (
-
-                <Form className="form w-100" noValidate="novalidate" >
-                  {/*<!--begin::Heading-->*/}
-                  <div className="mb-10 text-center">
-                    {/*<!--begin::Title-->*/}
-                    <h1 className="text-dark mb-3">Sign In to Metronic</h1>
-                    {/*<!--end::Title-->*/}
-                    {/*<!--begin::Link-->*/}
-                    <div className="text-gray-400 fw-bold fs-4">New Here?
-                      <Link to='/' className="link-primary fw-bolder">Create an Account</Link>
-                    </div>
-                    {/*<!--end::Link-->*/}
+              <Form className="form w-100" noValidate="novalidate" >
+                {/*<!--begin::Heading-->*/}
+                <div className="mb-10 text-center">
+                  {/*<!--begin::Title-->*/}
+                  <h1 className="text-dark mb-3">Sign In to Metronic</h1>
+                  {/*<!--end::Title-->*/}
+                  {/*<!--begin::Link-->*/}
+                  <div className="text-gray-400 fw-bold fs-4">New Here?
+                    <Link to='/register' className="link-primary fw-bolder">Create an Account</Link>
                   </div>
-                  {/*<!--end::Heading-->*/}
+                  {/*<!--end::Link-->*/}
+                </div>
+                {/*<!--end::Heading-->*/}
 
 
 
-                  <div className="fv-row mb-7">
-                    <label className="form-label fw-bolder text-dark fs-6">Email</label>
+                <div className="fv-row mb-7">
+                  <label className="form-label fw-bolder text-dark fs-6">Email</label>
 
-                    <Field className="form-control form-control-lg form-control-solid" type="email" name="email" placeholder="email" />
-                    <ErrorMessage name="email" component="span" className='d-block text-danger' />
+                  <Field className="form-control form-control-lg form-control-solid" type="email" name="email" placeholder="email" />
+                  <ErrorMessage name="email" component="span" className='d-block text-danger' />
 
-                  </div>
-                  {/*<!--end::Input group-->*/}
-                  {/*<!--begin::Input group-->*/}
-                  <div className="mb-10 fv-row" data-kt-password-meter="true">
-                    {/*<!--begin::Wrapper-->*/}
-                    <div className="mb-1">
-                      {/*<!--begin::Label-->*/}
-                      <label className="form-label fw-bolder text-dark fs-6">Password</label>
-                      {/*<!--end::Label-->*/}
-                      <Field className="form-control form-control-lg form-control-solid" type="password" name="password" placeholder="password" />
-                      <ErrorMessage name="password" component="span" className='d-block text-danger' />
-                      {/*<!--begin::Input wrapper-->*/}
-                      {/* <div className="position-relative mb-3">
-                                                        <input className="form-control form-control-lg form-control-solid" type="password" value={user?.password} onChange={formDataOnChange} placeholder="" confirm-password name="password" autoComplete="off" />
-                                                        <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                                                            <i className="bi bi-eye-slash fs-2"></i>
-                                                            <i className="bi bi-eye fs-2 d-none"></i>
-                                                        </span>
-                                                    </div> */}
-                      {/*<!--end::Input wrapper-->*/}
+                </div>
+                {/*<!--end::Input group-->*/}
+                {/*<!--begin::Input group-->*/}
+                <div className="mb-10 fv-row" data-kt-password-meter="true">
+                  {/*<!--begin::Wrapper-->*/}
+                  <div className="mb-1">
+                    {/*<!--begin::Label-->*/}
+                    <label className="form-label fw-bolder text-dark fs-6">Password</label>
+                    {/*<!--end::Label-->*/}
+                    {/*<!--begin::Input wrapper-->*/}
 
-                    </div>
-                    {/*<!--end::Wrapper-->*/}
-
-                  </div>
-                  {/*<!--end::Input group=-->*/}
-
-
-                  {/*<!--begin::Actions-->*/}
-                  <div className="text-center">
-                    <button type="submit" id="kt_sign_up_submit" className="btn btn-lg btn-primary">
-                      <span className="indicator-label">Submit</span>
-                      <span className="indicator-progress">Please wait...
-                        <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    <div className="position-relative mb-3">
+                      <Field className="form-control form-control-lg form-control-solid" type={password} name="password" placeholder="password" />
+                      <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" onClick={() => showHide("new")}>
+                        <i className="bi bi-eye-slash fs-2"></i>
+                        <i className="bi bi-eye fs-2 d-none"></i>
                       </span>
-                    </button>
+                    </div>
+                    {/*<!--end::Input wrapper-->*/}
+                    <ErrorMessage name="password" component="span" className='d-block text-danger' />
+
+
                   </div>
-                  {/*<!--end::Actions-->*/}
-                </Form>
+                  {/*<!--end::Wrapper-->*/}
+
+                </div>
+                {/*<!--end::Input group=-->*/}
 
 
-              )}
+                {/*<!--begin::Actions-->*/}
+                <div className="text-center">
+                  <button type="submit" id="kt_sign_up_submit" className="btn btn-lg btn-primary">
+                    <span className="indicator-label">Submit</span>
+                    <span className="indicator-progress">Please wait...
+                      <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                  </button>
+                </div>
+                {/*<!--end::Actions-->*/}
+              </Form>
             </Formik>
             {/* <!--end::Form--> */}
           </div>
