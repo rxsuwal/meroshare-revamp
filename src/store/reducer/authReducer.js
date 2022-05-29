@@ -11,8 +11,8 @@ const reducer = (state = initialState, action) => {
         // case actionType.SIGN_IN:
         //     return { ...state, user: action.payload }
 
-        // case actionType.SIGN_OUT:
-        //     return { ...state, user: null }
+        case actionType.SIGN_OUT:
+            return { ...state, userData: null,token:null }
 
         case actionType.SET_USER_TOKEN:
             return { ...state, token: action.payload }

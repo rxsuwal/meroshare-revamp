@@ -1,19 +1,20 @@
 import { Field, Form, Formik, ErrorMessage } from 'formik'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Layout from '../components/Layout'
 
 import * as Yup from 'yup'
 
-import * as actionProfile from '../store/actionCreator/detailsAction'
+import * as actionDetails from '../store/actionCreator/detailsAction'
+import Loader from '../components/Loader/Loader'
 
 const Details = () => {
     // STORE STATES
     const userData = useSelector((state) => state?.auth?.userData)
+    const userDetails = useSelector((state) => state?.userDetails?.details)
 
     // ACTION DISPATCH
     const dispatch = useDispatch()
-
 
 
 
@@ -24,14 +25,28 @@ const Details = () => {
         address: Yup.string().required('Address Required !'),
 
 
-
     });
 
 
     useEffect(() => {
-        dispatch(actionProfile.getDetails())
+        if (!userDetails) {
+            dispatch(actionDetails.getDetails())
+        }
     }, [userData])
-    
+
+
+
+
+
+    let [editModeDetails, setEditModeDetails] = useState(false)
+
+    const editModeToggle = () => {
+        if (!editModeDetails) {
+            setEditModeDetails(true)
+        } else if (editModeDetails) {
+            setEditModeDetails(false)
+        }
+    }
 
     return (
         <Layout pageTitle="My Details" pageGroup="General">
@@ -247,23 +262,31 @@ const Details = () => {
                         <h3 className="fw-bolder m-0">Profile Details</h3>
                     </div>
                     {/*--end::Card title*/}
+                    <div>
+                        {
+                            editModeDetails ?
+                                null :
+                                <button onClick={() => editModeToggle()} className="btn btn-primary">Edit</button>
+
+                        }
+                    </div>
                 </div>
                 {/*--begin::Card header*/}
                 {/*--begin::Content*/}
                 <div id="kt_account_settings_profile_details" className="collapse show">
                     {/*--begin::Form*/}
 
-                    <Formik
+                    {userDetails || userDetails == null ? <Formik
                         initialValues={{
-                            "contact": "",
-                            "address": "",
-                            "district": "",
-                            "province": ""
+                            "contact": userDetails?.contact,
+                            "address": userDetails?.address,
+                            "district": userDetails?.district,
+                            "province": userDetails?.province
                         }}
 
                         validationSchema={DisplayingErrorMessagesSchema}
                         onSubmit={values => {
-                            dispatch(actionProfile.updateDetails(values))
+                            dispatch(actionDetails.updateDetails(values))
                         }}
                     >
 
@@ -281,7 +304,7 @@ const Details = () => {
                                     {/*--end::Label*/}
                                     {/*--begin::Col*/}
                                     <div className="col-lg-8 fv-row">
-                                        <Field type="tel" name="contact" className="form-control form-control-lg form-control-solid" placeholder="Phone number" />
+                                        <Field type="tel" name="contact" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Phone number" />
 
                                         <ErrorMessage name="contact" component="span" className='d-block text-danger' />
 
@@ -302,7 +325,11 @@ const Details = () => {
                                         {/*--end::Label*/}
                                         {/*--begin::Col*/}
                                         <div className="col-lg-8 fv-row">
-                                            <Field type="text" name="province" className="form-control form-control-lg form-control-solid" placeholder="Enter Province" />
+                                            <Field type="text" name="province" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Province" >
+                                                
+
+
+                                            </Field>
                                             <ErrorMessage name="province" component="span" className='d-block text-danger' />
 
                                         </div>
@@ -320,7 +347,7 @@ const Details = () => {
                                         {/*--end::Label*/}
                                         {/*--begin::Col*/}
                                         <div className="col-lg-8 fv-row">
-                                            <Field type="tel" name="district" className="form-control form-control-lg form-control-solid" placeholder="Enter District" />
+                                            <Field type="tel" name="district" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter District" />
                                             <ErrorMessage name="district" component="span" className='d-block text-danger' />
 
                                         </div>
@@ -338,7 +365,7 @@ const Details = () => {
                                         {/*--end::Label*/}
                                         {/*--begin::Col*/}
                                         <div className="col-lg-8 fv-row">
-                                            <Field type="tel" name="address" className="form-control form-control-lg form-control-solid" placeholder="Enter Address" />
+                                            <Field type="tel" name="address" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Address" />
                                             <ErrorMessage name="address" component="span" className='d-block text-danger' />
 
                                         </div>
@@ -352,10 +379,10 @@ const Details = () => {
 
 
                                 {/*--begin::Actions*/}
-                                <div className="card-footer d-flex justify-content-end py-6 px-9">
-                                    <button type="reset" className="btn btn-light btn-active-light-primary me-2">Discard</button>
+                                {editModeDetails ? <div className="card-footer d-flex justify-content-end py-6 px-9">
+                                    <button type='button' onClick={() => editModeToggle()} className="btn btn-light btn-active-light-primary me-2">Cancel</button>
                                     <button type="submit" className="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
-                                </div>
+                                </div> : null}
                                 {/*--end::Actions*/}
                             </div>
 
@@ -367,7 +394,7 @@ const Details = () => {
 
 
 
-                    </Formik>
+                    </Formik> : <Loader />}
 
                     {/*--end::Form*/}
                 </div>

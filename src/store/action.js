@@ -1,13 +1,13 @@
-import * as actionType from './actionType'
+// import * as actionType from './actionType'
 
-export const setLoadingTrue =()=>{
-    return{
-        type:actionType.LOADING_TRUE
-    }
-}
+// export const setLoadingTrue =()=>{
+//     return{
+//         type:actionType.LOADING_TRUE
+//     }
+// }
 
-export const setLoadingfalse =()=>{
-    return{
-        type:actionType.LOADING_FALSE
-    }
-}
+// export const setLoadingfalse =()=>{
+//     return{
+//         type:actionType.LOADING_FALSE
+//     }
+// }

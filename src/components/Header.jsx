@@ -19,8 +19,10 @@ function Header(props) {
 
     useEffect(() => {
         // AUTH STATE CHECK
-        dispatch(actionAuth.authCheck(navigate))
+        if (!userData) {
+            dispatch(actionAuth.authCheck(navigate))
 
+        }
 
 
     }, [])
@@ -120,7 +122,7 @@ function Header(props) {
                                 {/* <!--end::Menu item--> */}
                                 {/* <!--begin::Menu item--> */}
                                 <div className="menu-item px-5">
-                                    <NavLink to={'/shares'}  className="menu-link px-5">
+                                    <NavLink to={'/shares'} className="menu-link px-5">
                                         <span className="menu-text">My Shares</span>
                                         <span className="menu-badge">
                                             <span className="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>

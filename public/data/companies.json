@@ -1,0 +1,115 @@
+{
+    "companies": [
+        {
+            "scrip": "ADBL",
+            "name": "Agriculture Development Bank Limited",
+            "listed": "30,375,000",
+            "paidUpValue": "100.00",
+            "totalPaidUpValue": "3,037,500,000.00"
+        },
+        {
+            "scrip": "CBL",
+            "name": "Civil Bank Ltd"
+        },
+        {
+            "scrip": "CZBIL",
+            "name": "Citizen Bank International Limited"
+        },
+        {
+            "scrip": "EBL",
+            "name": "Everest Bank Limited"
+        },
+        {
+            "scrip": "GBIME",
+            "name": "Global IME Bank Limited"
+        },
+        {
+            "scrip": "HBL",
+            "name": "Himalayan Bank Limited"
+        },
+        {
+            "scrip": "KBL",
+            "name": "Kumari Bank Limited"
+        },
+        {
+            "scrip": "LBL",
+            "name": "Laxmi Bank Limited"
+        },
+        {
+            "scrip": "MBL",
+            "name": "Machhapuchchhre Bank Limited"
+        },
+        {
+            "scrip": "MEGA",
+            "name": "Mega Bank Nepal Ltd."
+        },
+        {
+            "scrip": "NABIL",
+            "name": "Nabil Bank Limited"
+        },
+        {
+            "scrip": "NBB",
+            "name": "Nepal Bangladesh Bank Limited"
+        },
+        {
+            "scrip": "NBL",
+            "name": "Nepal Bank Limited"
+        },
+        {
+            "scrip": "NCCB",
+            "name": "Nepal Credit And Commercial Bank Limited"
+        },
+        {
+            "scrip": "NIB",
+            "name": "Nepal Investment Bank Limited"
+        },
+        {
+            "scrip": "NICA",
+            "name": "NIC Asia Bank Ltd."
+        },
+        {
+            "scrip": "NMB",
+            "name": "NMB Bank Limited"
+        },
+        {
+            "scrip": "PCBL",
+            "name": "Prime Commercial Bank Ltd."
+        },
+        {
+            "scrip": "SANIMA",
+            "name": "Sanima Bank Limited"
+        },
+        {
+            "scrip": "SBI",
+            "name": "Nepal SBI Bank Limited"
+        },
+        {
+            "scrip": "SBL",
+            "name": "Siddhartha Bank Limited"
+        },
+        {
+            "scrip": "SCB",
+            "name": "Standard Chartered Bank Limited"
+        },
+        {
+            "scrip": "SRBL",
+            "name": "Sunrise Bank Limited"
+        },
+        {
+            "scrip": "CCBL",
+            "name": "Century Commercial Bank Ltd."
+        },
+        {
+            "scrip": "PRVU",
+            "name": "Prabhu Bank Limited"
+        },
+        {
+            "scrip": "RBB",
+            "name": "Rastriya Banijya Bank Limited"
+        },
+        {
+            "scrip": "BOKL",
+            "name": "Bank of Kathmandu Ltd."
+        }
+    ]
+}

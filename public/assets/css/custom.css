@@ -1,0 +1,7 @@
+.form-control:disabled{
+    background: transparent!important;
+    border: 0;
+}
+
+
+

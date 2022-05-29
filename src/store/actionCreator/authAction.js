@@ -3,7 +3,9 @@ import toast from "react-hot-toast"
 
 import * as actionType from "../actionType"
 
-import * as loading from '../action'
+// import * as loading from '../action'
+
+import * as loader from './loaderAction'
 
 
 import { authInstance, authInstanceWithToken } from '../../axios/authInstance'
@@ -26,11 +28,10 @@ export const authCheck = (navigate) => {
 
 
     return dispatch => {
-        dispatch(loading.setLoadingTrue())
 
 
 
-        { !token ? navigate('/') : dispatch(setUserToken(token)), dispatch(getUserData(token, navigate)), dispatch(loading.setLoadingfalse()) }
+        { !token ? navigate('/') : dispatch(setUserToken(token)), dispatch(getUserData(token, navigate)) }
 
 
     }
@@ -49,7 +50,7 @@ export const signin = (payload, navigate) => {
     return dispatch => {
 
 
-        dispatch(loading.setLoadingTrue())
+        dispatch(loader.setLoaderTrue())
 
         authInstance.post('accounts:signInWithPassword', data)
             .then(rspnse => {
@@ -65,7 +66,7 @@ export const signin = (payload, navigate) => {
 
                 navigate('/dashboard')
 
-                dispatch(loading.setLoadingfalse())
+                dispatch(loader.setLoaderFalse())
 
 
             })
@@ -73,7 +74,7 @@ export const signin = (payload, navigate) => {
                 console.log(err)
                 console.log(err?.response?.data)
                 toast.error(err.response?.data?.error?.message)
-                dispatch(loading.setLoadingfalse())
+                dispatch(loader.setLoaderFalse())
 
 
             })
@@ -85,12 +86,12 @@ export const signout = (navigate) => {
     return dispatch => {
         dispatch(navigate('/'))
     }
+    
 }
 
 
 // REGISTER
 export const register = (payload, navigate) => {
-    console.log(payload)
 
 
     let data = {
@@ -100,6 +101,9 @@ export const register = (payload, navigate) => {
     }
 
     return dispatch => {
+
+        dispatch(loader.setLoaderTrue())
+
         authInstance.post('accounts:signUp', data)
             .then(rspnse => {
                 // console.log(rspnse.data)
@@ -115,9 +119,10 @@ export const register = (payload, navigate) => {
 
             })
             .catch(err => {
-                console.log(err?.response?.data)
 
                 toast.error(err.response?.data?.error?.message)
+
+                dispatch(loader.setLoaderFalse())
 
 
             })
@@ -139,6 +144,8 @@ export const updateUser = (payload, token, navigate) => {
                 toast.success('Registration Successfull !')
 
                 navigate('/')
+                dispatch(loader.setLoaderFalse())
+
 
             })
             .catch(err => {

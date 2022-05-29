@@ -10,3 +10,6 @@ export const SET_USER_DATA = "SET_USER_DATA"
 
 export const LOADING_TRUE = "LOADING_TRUE"
 export const LOADING_FALSE = "LOADING_FALSE"
+
+
+export const SET_USER_DETAILS = "SET_USER_DETAILS"

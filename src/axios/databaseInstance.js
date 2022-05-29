@@ -23,7 +23,7 @@ databaseInstancePrivate.interceptors.response.use((response) => {
 
 
 const databaseInstancePublic = axios.create({
-    baseURL: BASE_URL.databasePrivate
+    baseURL: BASE_URL.databasePublic
 })
 
 databaseInstancePublic.interceptors.request.use((config) => {

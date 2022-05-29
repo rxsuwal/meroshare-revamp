@@ -4,17 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import authReducer from './store/reducer/authReducer'
-import loadingReducer from './store/reducer';
+// import authReducer from './store/reducer/authReducer'
+// import loadingReducer from './store/reducer';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
+import { rootReducer } from './store/reducer/index';
 
-const rootReducer = combineReducers({
-  auth: authReducer,
-  loading: loadingReducer
-})
+
+// const rootReducer = combineReducers({
+//   auth: authReducer,
+//   loading: loadingReducer
+// })
 
 
 const logger = store => {

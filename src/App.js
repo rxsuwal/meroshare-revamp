@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import Settings from './routes/Settings';
+import Loader from './components/Loader/Loader';
 
 function App() {
 
@@ -35,10 +36,9 @@ function App() {
   return (
 
     <>
-      {loading ? 
-      <div className='w-100 d-flex text-center' style={{height:"100vh"}}>
-        <InfinitySpin className="m-auto" color="grey" style={{margin:"auto"}} />
-        </div> :
+      {loading ?
+        <Loader />
+        :
         <>
           < Toaster position="top-right"
             reverseOrder={false} />
@@ -55,7 +55,7 @@ function App() {
               <Route path="/details" element={<Details />} />
               <Route path="/asba" element={<Asba />} />
               <Route path="/shares" element={<Shares />} />
-              <Route path="/settings" element={<Settings/>} />
+              <Route path="/settings" element={<Settings />} />
 
 
             </Routes>
