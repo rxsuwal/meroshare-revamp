@@ -44,7 +44,7 @@ const UserDataUpdateModal = (props) => {
                         }}
                         validationSchema={DisplayingErrorMessagesSchema}
                         onSubmit={values => {
-                            dispatch(actionAuth.updateUserData(values))
+                            // dispatch(actionAuth.updateUserData(values))
                         }}
                     >
                         {({ values, setFieldValue }) => (

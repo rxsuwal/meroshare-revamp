@@ -11,27 +11,12 @@ import Shares from './routes/Shares';
 import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { InfinitySpin } from 'react-loader-spinner';
 import Settings from './routes/Settings';
 import Loader from './components/Loader/Loader';
 
 function App() {
 
   const loading = useSelector((state) => state.loading.loading)
-
-
-  // const [loading, setLoading] = useState(true)
-
-  // useEffect(() => {
-  //   console.log(loading)
-
-
-  //   setTimeout(function () {
-  //     setLoading(false)
-  //   }, 5000)
-  // }, [])
-
-
 
   return (
 

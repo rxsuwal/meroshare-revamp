@@ -1,11 +1,13 @@
 import authReducer from './authReducer'
-import detailsReducer from './detailsReducer'
+import userDataReducer from './userDataReducer'
 import loadingReducer from "./loaderReducer"
 
 import { combineReducers } from 'redux'
+import dataReducer from './dataReducer'
 
 export const rootReducer = combineReducers({
     auth: authReducer,
     loading: loadingReducer,
-    userDetails: detailsReducer
+    userData: userDataReducer,
+    data: dataReducer
 })

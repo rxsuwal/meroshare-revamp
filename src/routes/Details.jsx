@@ -5,13 +5,28 @@ import Layout from '../components/Layout'
 
 import * as Yup from 'yup'
 
-import * as actionDetails from '../store/actionCreator/detailsAction'
+import * as actionDetails from '../store/actionCreator/userDataAction'
 import Loader from '../components/Loader/Loader'
+import SelectWithSearch from '../components/SelectWithSearch'
+
+
+
 
 const Details = () => {
+    const provinceList = [
+        { value: "Province 1", label: "Province 1" },
+        { value: "Madhesh", label: "Madhesh" },
+        { value: "Bagmati", label: "Bagmati" },
+        { value: "Gandaki", label: "Gandaki" },
+        { value: "Lumbini", label: "Lumbini" },
+        { value: "Karnali", label: "Karnali" },
+        { value: "Sudurpaschim", label: "Sudurpaschim" }
+
+    ];
+
     // STORE STATES
     const userData = useSelector((state) => state?.auth?.userData)
-    const userDetails = useSelector((state) => state?.userDetails?.details)
+    const userDetails = useSelector((state) => state?.userData?.details)
 
     // ACTION DISPATCH
     const dispatch = useDispatch()
@@ -191,14 +206,15 @@ const Details = () => {
                                 </div>
                                 {/*--end::Wrapper*/}
                                 {/*--begin::Progress*/}
-                                <div className="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
+                                <div className="d-flex align-items-center w-md-50 w-100 flex-column mt-3">
                                     <div className="d-flex justify-content-between w-100 mt-auto mb-2">
                                         <span className="fw-bold fs-6 text-gray-400">Profile Completion</span>
-                                        <span className="fw-bolder fs-6">50%</span>
+                                        <span className="fw-bolder fs-6">{userDetails ? `100%` : `50%`}</span>
                                     </div>
                                     <div className="h-5px mx-3 w-100 bg-light mb-3">
-                                        <div className="bg-success rounded h-5px" role="progressbar" style={{ "width": "50%" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div className="bg-success rounded h-5px" role="progressbar" style={{ "width": userDetails ? `100%` : `50%` }} aria-valuenow={userDetails ? 100 : 50} aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
+
                                 </div>
                                 {/*--end::Progress*/}
                             </div>
@@ -290,107 +306,120 @@ const Details = () => {
                         }}
                     >
 
-                        <Form className="form">
+                        {({ values, setFieldValue, handleChange }) => (
+                            <Form className="form">
 
-                            <div className="card-body border-top p-9">
+                                <div className="card-body border-top p-9">
 
-                                {/*--begin::Input group*/}
-                                <div className="row mb-6">
-                                    {/*--begin::Label*/}
-                                    <label className="col-lg-4 col-form-label fw-bold fs-6">
-                                        <span className="required">Contact Phone</span>
-                                        <i className="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i>
-                                    </label>
-                                    {/*--end::Label*/}
-                                    {/*--begin::Col*/}
-                                    <div className="col-lg-8 fv-row">
-                                        <Field type="tel" name="contact" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Phone number" />
+                                    {/*--begin::Input group*/}
+                                    <div className="row mb-6">
+                                        {/*--begin::Label*/}
+                                        <label className="col-lg-4 col-form-label fw-bold fs-6">
+                                            <span className="required">Contact Phone</span>
+                                            <i className="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i>
+                                        </label>
+                                        {/*--end::Label*/}
+                                        {/*--begin::Col*/}
+                                        <div className="col-lg-8 fv-row">
+                                            <Field type="tel" name="contact" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Phone number" />
 
-                                        <ErrorMessage name="contact" component="span" className='d-block text-danger' />
+                                            <ErrorMessage name="contact" component="span" className='d-block text-danger' />
 
+                                        </div>
+                                        {/*--end::Col*/}
                                     </div>
-                                    {/*--end::Col*/}
+                                    {/*--end::Input group*/}
+
+                                    <div>
+                                        <h3 className='my-6'>Address</h3>
+
+                                        {/*--begin::Input group*/}
+                                        <div className="row mb-6">
+                                            {/*--begin::Label*/}
+                                            <label className="col-lg-4 col-form-label fw-bold fs-6">
+                                                <span className="required">Province</span>
+                                            </label>
+                                            {/*--end::Label*/}
+                                            {/*--begin::Col*/}
+                                            <div className="col-lg-8 fv-row">
+                                                <SelectWithSearch
+                                                    disabled={!editModeDetails}
+                                                    name="province"
+                                                    options={provinceList}
+                                                    value={values.province}
+                                                    className="form-select form-select-solid form-select-lg"
+                                                    onchange={(e) => {
+                                                        console.log(e)
+                                                        handleChange(e.value)
+                                                        setFieldValue("province", e.value)
+                                                        console.log(values.province)
+                                                    }} />
+                                                {/* <Field component={SelectWithSearch} name="province" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" /> */}
+
+
+
+                                                <ErrorMessage name="province" component="span" className='d-block text-danger' />
+
+                                            </div>
+                                            {/*--end::Col*/}
+                                        </div>
+                                        {/*--end::Input group*/}
+
+
+                                        {/*--begin::Input group*/}
+                                        <div className="row mb-6">
+                                            {/*--begin::Label*/}
+                                            <label className="col-lg-4 col-form-label fw-bold fs-6">
+                                                <span className="required">District</span>
+                                            </label>
+                                            {/*--end::Label*/}
+                                            {/*--begin::Col*/}
+                                            <div className="col-lg-8 fv-row">
+                                                <Field type="tel" name="district" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter District" />
+                                                <ErrorMessage name="district" component="span" className='d-block text-danger' />
+
+                                            </div>
+                                            {/*--end::Col*/}
+                                        </div>
+                                        {/*--end::Input group*/}
+
+
+                                        {/*--begin::Input group*/}
+                                        <div className="row mb-6">
+                                            {/*--begin::Label*/}
+                                            <label className="col-lg-4 col-form-label fw-bold fs-6">
+                                                <span className="required">Address</span>
+                                            </label>
+                                            {/*--end::Label*/}
+                                            {/*--begin::Col*/}
+                                            <div className="col-lg-8 fv-row">
+                                                <Field type="tel" name="address" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Address" />
+                                                <ErrorMessage name="address" component="span" className='d-block text-danger' />
+
+                                            </div>
+                                            {/*--end::Col*/}
+                                        </div>
+                                        {/*--end::Input group*/}
+                                    </div>
+
+
+
+
+
+                                    {/*--begin::Actions*/}
+                                    {editModeDetails ? <div className="card-footer d-flex justify-content-end py-6 px-9">
+                                        <button type='reset' onClick={() => editModeToggle()} className="btn btn-light btn-active-light-primary me-2">Cancel</button>
+                                        <button type="submit" className="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+                                    </div> : null}
+                                    {/*--end::Actions*/}
                                 </div>
-                                {/*--end::Input group*/}
-
-                                <div>
-                                    <h3 className='my-6'>Address</h3>
-
-                                    {/*--begin::Input group*/}
-                                    <div className="row mb-6">
-                                        {/*--begin::Label*/}
-                                        <label className="col-lg-4 col-form-label fw-bold fs-6">
-                                            <span className="required">Province</span>
-                                        </label>
-                                        {/*--end::Label*/}
-                                        {/*--begin::Col*/}
-                                        <div className="col-lg-8 fv-row">
-                                            <Field type="text" name="province" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Province" >
-                                                
-
-
-                                            </Field>
-                                            <ErrorMessage name="province" component="span" className='d-block text-danger' />
-
-                                        </div>
-                                        {/*--end::Col*/}
-                                    </div>
-                                    {/*--end::Input group*/}
-
-
-                                    {/*--begin::Input group*/}
-                                    <div className="row mb-6">
-                                        {/*--begin::Label*/}
-                                        <label className="col-lg-4 col-form-label fw-bold fs-6">
-                                            <span className="required">District</span>
-                                        </label>
-                                        {/*--end::Label*/}
-                                        {/*--begin::Col*/}
-                                        <div className="col-lg-8 fv-row">
-                                            <Field type="tel" name="district" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter District" />
-                                            <ErrorMessage name="district" component="span" className='d-block text-danger' />
-
-                                        </div>
-                                        {/*--end::Col*/}
-                                    </div>
-                                    {/*--end::Input group*/}
-
-
-                                    {/*--begin::Input group*/}
-                                    <div className="row mb-6">
-                                        {/*--begin::Label*/}
-                                        <label className="col-lg-4 col-form-label fw-bold fs-6">
-                                            <span className="required">Address</span>
-                                        </label>
-                                        {/*--end::Label*/}
-                                        {/*--begin::Col*/}
-                                        <div className="col-lg-8 fv-row">
-                                            <Field type="tel" name="address" disabled={!editModeDetails} className="form-control form-control-lg form-control-solid" placeholder="Enter Address" />
-                                            <ErrorMessage name="address" component="span" className='d-block text-danger' />
-
-                                        </div>
-                                        {/*--end::Col*/}
-                                    </div>
-                                    {/*--end::Input group*/}
-                                </div>
 
 
 
 
 
-                                {/*--begin::Actions*/}
-                                {editModeDetails ? <div className="card-footer d-flex justify-content-end py-6 px-9">
-                                    <button type='button' onClick={() => editModeToggle()} className="btn btn-light btn-active-light-primary me-2">Cancel</button>
-                                    <button type="submit" className="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
-                                </div> : null}
-                                {/*--end::Actions*/}
-                            </div>
-
-
-
-
-
-                        </Form>
+                            </Form>
+                        )}
 
 
 
