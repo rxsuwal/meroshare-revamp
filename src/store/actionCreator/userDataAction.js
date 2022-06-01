@@ -32,25 +32,19 @@ export const getDetails = () => {
 
 
     return dispatch => {
-        // dispatch(loader.setLoaderTrue())
         let getDetailsReturnData
         databaseInstancePrivate.get('/details.json')
             .then(rspnse => {
                 getDetailsReturnData = rspnse
-                // console.log(rspnse)
-                // dispatch(setDetails(rspnse?.data))
 
 
             })
             .catch(err => {
                 getDetailsReturnData = err.response
-                // console.log(err?.response)
-                // toast.error(err?.response?.data.error)
+
 
 
             }).then(() => {
-                // dispatch(loader.setLoaderFalse())
-                console.log("GET DETAIL DATA", getDetailsReturnData)
                 if (getDetailsReturnData != null) {
 
                     if (getDetailsReturnData.status == "200") {
@@ -76,11 +70,15 @@ export const setDetails = (payload) => {
 
 export const addShares = (payload) => {
     return dispatch => {
+        dispatch(loader.setLoaderTrue())
         databaseInstancePrivate.post('shares.json', payload)
             .then(rspnse => {
                 console.log(rspnse)
                 dispatch(getShares())
+
+                dispatch(loader.setLoaderFalse())
                 toast.success('Added Succesfully !')
+
             })
             .catch(err => {
                 toast.error('ERR')
@@ -88,6 +86,7 @@ export const addShares = (payload) => {
             })
     }
 }
+
 
 export const getShares = () => {
     return dispatch => {

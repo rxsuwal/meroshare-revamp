@@ -13,25 +13,38 @@ import * as actionUserData from '../store/actionCreator/userDataAction'
 import Loader from '../components/Loader/Loader'
 
 const Shares = () => {
+    let dispatch = useDispatch()
+
+    // STORE SELECTORS
     const companies = useSelector((state) => state?.data?.companies)
     const shares = useSelector((state) => state?.userData?.shares)
+    const userData = useSelector((state) => state?.auth?.userData)
 
-    let dispatch = useDispatch()
+    // DISPATCH GET COMPANY,SHARES
     useEffect(() => {
-        dispatch(actionData.getCompanies())
         dispatch(actionUserData.getShares())
 
+        if (!companies) {
+            dispatch(actionData.getCompanies())
 
+        }
 
+    }, [userData])
+    // END DISPATCH GET COMPANY,SHARES
 
-    }, [])
-
-
-
-
+    // SET LIST OF ALL COMPANIES
     let allCompanies = []
     let myShares = {
         header: [{
+            label: 'Scrip',
+            field: 'scrip',
+            width: 150,
+            attributes: {
+                'aria-controls': 'DataTable',
+                'aria-label': 'Name',
+            },
+
+        }, {
             label: 'Name',
             field: 'company',
             width: 150,
@@ -50,8 +63,6 @@ const Shares = () => {
         data: shares
 
     }
-
-
     useEffect(() => {
         for (let i = 0; i < companies?.length; i++) {
             let obj = {}
@@ -60,15 +71,11 @@ const Shares = () => {
             allCompanies.push(obj)
         }
     }, [allCompanies])
+    // END SET LIST OF ALL COMPANIES
 
-
+    // ADD COMPANY POPUP
     const [show, setShow] = useState(false)
-
-
-
-
-
-
+    // END ADD COMPANY POPUP
 
 
     return (
@@ -78,18 +85,34 @@ const Shares = () => {
                 <button className='btn btn-primary' onClick={() => setShow(true)}>Add</button>
             </div>
 
-            {shares ? <Table header={myShares.header} data={myShares.data} />
-                : <Loader />}
 
+            {/* TABLE */}
+            {shares ?
+                <>
+                    {
+                        shares.length == "0" ?
+                            <h4 className='text-center py-8'>Start Adding !</h4>
+                            : <Table header={myShares.header} data={myShares.data} />
+                    }
+                </>
+                : <Loader />}
+            {/* END TABLE */}
+
+            {/* ADD COMPANY POPUP */}
             <PopUp title="Add Shares" close={() => setShow(false)} show={show} >
                 <Formik initialValues={{
                     "company": "",
-                    "quantity": ""
+                    "scrip": "",
+                    "quantity": "",
+                    "pricePerUnit": "",
+                    "totalAmount": ""
                 }}
 
                     validationSchema={Yup.object().shape({
                         quantity: Yup.string().required('Quantity Required'),
-                        company: Yup.string().required('Company Required!')
+                        company: Yup.string().required('Company Required!'),
+                        pricePerUnit: Yup.string().required('Price per unit Required!')
+
                     })}
                     onSubmit={values => {
                         dispatch(actionUserData.addShares(values))
@@ -116,7 +139,9 @@ const Shares = () => {
                                         className="form-select form-select-solid form-select-lg"
                                         onchange={(e) => {
                                             handleChange(e.value)
-                                            setFieldValue("company", e.value)
+                                            setFieldValue("company", e.label)
+                                            setFieldValue("scrip", e.value)
+                                            console.log(e)
                                         }} />
                                     {/* <Field type="number" name="quantity" className="form-control form-control-lg form-control-solid" placeholder="Enter Number of Shares" /> */}
 
@@ -136,9 +161,55 @@ const Shares = () => {
                                 {/*--end::Label*/}
                                 {/*--begin::Col*/}
                                 <div className="col-lg-8 fv-row">
-                                    <Field type="number" name="quantity" className="form-control form-control-lg form-control-solid" placeholder="Enter Number of Shares" />
+                                    <Field type="number" name="quantity" className="form-control form-control-lg form-control-solid" placeholder="Enter Number of Shares"
+                                        onChange={(e) => {
+                                            handleChange(e)
+                                            setFieldValue("totalAmount", values.quantity * e.target.value)
+
+                                        }} />
 
                                     <ErrorMessage name="quantity" component="span" className='d-block text-danger' />
+
+                                </div>
+                                {/*--end::Col*/}
+                            </div>
+                            {/*--end::Input group*/}
+
+                            {/*--begin::Input group*/}
+                            <div className="row mb-6">
+                                {/*--begin::Label*/}
+                                <label className="col-lg-4 col-form-label fw-bold fs-6">
+                                    <span className="required">Price Per Unit</span>
+                                </label>
+                                {/*--end::Label*/}
+                                {/*--begin::Col*/}
+                                <div className="col-lg-8 fv-row">
+                                    <Field type="number" name="pricePerUnit" className="form-control form-control-lg form-control-solid" placeholder="Enter Per Unit"
+                                        onChange={(e) => {
+                                            handleChange(e)
+                                            setFieldValue("totalAmount", values.quantity * e.target.value)
+
+                                        }} />
+
+                                    <ErrorMessage name="pricePerUnit" component="span" className='d-block text-danger' />
+
+                                </div>
+                                {/*--end::Col*/}
+                            </div>
+                            {/*--end::Input group*/}
+
+                            {/*--begin::Input group*/}
+                            <div className="row mb-6">
+                                {/*--begin::Label*/}
+                                <label className="col-lg-4 col-form-label fw-bold fs-6">
+                                    <span className="required">Total Amount</span>
+                                </label>
+                                {/*--end::Label*/}
+                                {/*--begin::Col*/}
+                                <div className="col-lg-8 fv-row">
+                                    <Field type="number" name="totalAmount" value={values.totalAmount} disabled className="form-control form-control-lg form-control-solid" placeholder="Enter Per Unit" />
+
+                                    <ErrorMessage name="totalAmount" component="span" className='d-block text-danger' />
 
                                 </div>
                                 {/*--end::Col*/}
@@ -161,6 +232,8 @@ const Shares = () => {
 
 
             </PopUp>
+            {/* ADD COMPANY POPUP */}
+
         </Layout >
     )
 }

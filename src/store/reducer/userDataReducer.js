@@ -3,7 +3,7 @@ import * as actionType from '../actionType'
 
 const initialState = {
     details: "",
-    shares: ""
+    shares: "",
 }
 
 
@@ -23,6 +23,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 shares: action.payload
             }
+
 
         default:
             return state

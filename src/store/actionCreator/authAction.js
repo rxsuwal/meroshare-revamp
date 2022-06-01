@@ -84,9 +84,16 @@ export const signin = (payload, navigate) => {
 export const signout = (navigate) => {
     localStorage.clear()
     return dispatch => {
-        dispatch(navigate('/'))
+        dispatch(setSignOut(),navigate('/'))
+        
     }
     
+}
+
+export const setSignOut =()=>{
+    return{
+        type:actionType.SIGN_OUT
+    }
 }
 
 
