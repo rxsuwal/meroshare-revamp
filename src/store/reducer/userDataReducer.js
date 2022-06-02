@@ -24,6 +24,13 @@ const reducer = (state = initialState, action) => {
                 shares: action.payload
             }
 
+        case actionType.SIGN_OUT:
+            return {
+                ...state,
+                details: "",
+                shares: "",
+            }
+
 
         default:
             return state

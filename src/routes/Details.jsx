@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 import * as actionDetails from '../store/actionCreator/userDataAction'
 import Loader from '../components/Loader/Loader'
 import SelectWithSearch from '../components/SelectWithSearch'
+import { Link } from 'react-router-dom'
 
 
 
@@ -34,7 +35,7 @@ const Details = () => {
 
 
     const DisplayingErrorMessagesSchema = Yup.object().shape({
-        contact: Yup.string().required('Contact Required !'),
+        contact: Yup.number().required('Contact Required !').positive("Negative number not allowed!").integer("Decimal not allowed !"),
         province: Yup.string().required('Province Required !'),
         district: Yup.string().required('District Required !'),
         address: Yup.string().required('Address Required !'),
@@ -161,7 +162,7 @@ const Details = () => {
                                                     </div>
                                                     {/*--end::Number*/}
                                                     {/*--begin::Label*/}
-                                                    <div className="fw-bold fs-6 text-gray-400">Earnings</div>
+                                                    <div className="fw-bold fs-6 text-gray-400">Units</div>
                                                     {/*--end::Label*/}
                                                 </div>
                                                 {/*--end::Stat*/}
@@ -181,7 +182,7 @@ const Details = () => {
                                                     </div>
                                                     {/*--end::Number*/}
                                                     {/*--begin::Label*/}
-                                                    <div className="fw-bold fs-6 text-gray-400">Projects</div>
+                                                    <div className="fw-bold fs-6 text-gray-400">Scrips</div>
                                                     {/*--end::Label*/}
                                                 </div>
                                                 {/*--end::Stat*/}
@@ -201,7 +202,7 @@ const Details = () => {
                                                     </div>
                                                     {/*--end::Number*/}
                                                     {/*--begin::Label*/}
-                                                    <div className="fw-bold fs-6 text-gray-400">Success Rate</div>
+                                                    <div className="fw-bold fs-6 text-gray-400">Total Amount</div>
                                                     {/*--end::Label*/}
                                                 </div>
                                                 {/*--end::Stat*/}
@@ -233,39 +234,20 @@ const Details = () => {
 
                                 {/*--begin::Nav item*/}
                                 <li className="nav-item mt-2">
-                                    <a className="nav-link text-active-primary ms-0 me-10 py-5 active" href="../../demo14/dist/account/settings.html">Overview</a>
+                                    <Link to={'/details'} className="nav-link text-active-primary ms-0 me-10 py-5 active" >Overview</Link>
                                 </li>
                                 {/*--end::Nav item*/}
                                 {/*--begin::Nav item*/}
                                 <li className="nav-item mt-2">
-                                    <a className="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo14/dist/account/security.html">Security</a>
+                                    <Link to={"/shares"} className="nav-link text-active-primary ms-0 me-10 py-5">My Shares</Link>
                                 </li>
                                 {/*--end::Nav item*/}
                                 {/*--begin::Nav item*/}
                                 <li className="nav-item mt-2">
-                                    <a className="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo14/dist/account/billing.html">Billing</a>
+                                    <Link to={"/portfolio"} className="nav-link text-active-primary ms-0 me-10 py-5" >My Portfolio</Link>
                                 </li>
                                 {/*--end::Nav item*/}
-                                {/*--begin::Nav item*/}
-                                <li className="nav-item mt-2">
-                                    <a className="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo14/dist/account/statements.html">Statements</a>
-                                </li>
-                                {/*--end::Nav item*/}
-                                {/*--begin::Nav item*/}
-                                <li className="nav-item mt-2">
-                                    <a className="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo14/dist/account/referrals.html">Referrals</a>
-                                </li>
-                                {/*--end::Nav item*/}
-                                {/*--begin::Nav item*/}
-                                <li className="nav-item mt-2">
-                                    <a className="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo14/dist/account/api-keys.html">API Keys</a>
-                                </li>
-                                {/*--end::Nav item*/}
-                                {/*--begin::Nav item*/}
-                                <li className="nav-item mt-2">
-                                    <a className="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo14/dist/account/logs.html">Logs</a>
-                                </li>
-                                {/*--end::Nav item*/}
+                             
                             </ul>
                             {/*--begin::Navs*/}
                         </div>

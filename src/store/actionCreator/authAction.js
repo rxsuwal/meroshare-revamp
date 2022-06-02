@@ -9,6 +9,7 @@ import * as loader from './loaderAction'
 
 
 import { authInstance, authInstanceWithToken } from '../../axios/authInstance'
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -84,15 +85,15 @@ export const signin = (payload, navigate) => {
 export const signout = (navigate) => {
     localStorage.clear()
     return dispatch => {
-        dispatch(setSignOut(),navigate('/'))
-        
+        dispatch(setSignOut(), navigate('/'))
+
     }
-    
+
 }
 
-export const setSignOut =()=>{
-    return{
-        type:actionType.SIGN_OUT
+export const setSignOut = () => {
+    return {
+        type: actionType.SIGN_OUT
     }
 }
 
@@ -173,17 +174,19 @@ export const setUserToken = (payload) => {
 
 export const getUserData = (payload, navigate) => {
     return dispatch => {
+        dispatch(loader.setLoaderTrue())
         authInstance.post('accounts:lookup', { "idToken": payload })
             .then(rspnse => {
                 dispatch(setUserData(rspnse.data))
-                // dispatch(loading.setLoadingTrue())
+                dispatch(loader.setLoaderFalse())
             })
             .catch(err => {
                 console.log(err?.response?.data?.error)
                 toast.error(err?.response?.data?.error.message)
-                // dispatch(loading.setLoadingTrue())
 
                 signout(navigate)
+
+                dispatch(loader.setLoaderFalse())
 
             })
     }
@@ -199,21 +202,52 @@ export const setUserData = (payload) => {
 
 // CHANGE PASSWORD
 export const changePassword = (payload) => {
-
-    console.log(payload)
-
     let data = {
         password: payload.confirmNewPassword,
     }
     return dispatch => {
+        dispatch(loader.setLoaderTrue())
+        let responseData
         authInstanceWithToken.post("accounts:update", data)
             .then(rspnse => {
-                console.log(rspnse)
-
-                toast.success('Password Changed Successfully !')
+                responseData = rspnse
             }).catch(err => {
-                console.log(err.response.data.error.message)
-                toast.error(err.response.data.error.message + '!')
+                responseData = err.response
+            }).then(() => {
+                if (responseData.status == "200") {
+                    dispatch(loader.setLoaderFalse())
+                    toast.success('Password Changed Successfully !')
+                } else if (responseData.status != "200") {
+                    dispatch(loader.setLoaderFalse())
+                    toast.error(responseData.data.error.message + '!')
+
+                }
+            })
+    }
+}
+
+// DELETE ACCOUNT
+export const deleteAccount = (navigate) => {
+    return dispatch => {
+        let response
+        dispatch(loader.setLoaderTrue())
+        authInstanceWithToken.post('accounts:delete')
+            .then(rspnse => {
+                response = rspnse
+            }).catch(err=>{
+                response = err.response
+            }).then(()=>{
+                if(response.status =="200"){
+                    toast.success("Account delete Successful !")
+
+                    dispatch(signout(navigate))
+                    dispatch(loader.setLoaderFalse())
+
+                } else if(response.status !="200"){
+                    dispatch(loader.setLoaderFalse())
+
+                    toast.error(response.data.error.message + '!')
+                }
             })
     }
 }

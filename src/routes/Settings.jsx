@@ -5,6 +5,8 @@ import Layout from '../components/Layout'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import * as actionAuth from "../store/actionCreator/authAction"
+import SelectWithSearch from '../components/SelectWithSearch'
+import { useNavigate } from 'react-router-dom'
 
 
 function Settings() {
@@ -40,81 +42,181 @@ function Settings() {
     });
 
     let dispatch = useDispatch()
+    let navigate = useNavigate()
     return (
         <Layout pageTitle="Settings" pageGroup="Account Settings">
-            <h1>Change Password</h1>
+            <div>
+                <h2>Change Password</h2>
+
+                <div>
+                    <Formik
+                        initialValues={{
+                            newPassword: '',
+                            confirmNewPassword: ''
+                        }}
+                        validationSchema={DisplayingErrorMessagesSchema}
+                        onSubmit={values => {
+                            dispatch(actionAuth.changePassword(values))
+                        }}
+                    >
+                        <Form className="form w-50 mt-6" noValidate="novalidate" >
+
+
+                            {/*<!--begin::Input group-->*/}
+                            <div className="mb-10 fv-row">
+                                {/*<!--begin::Wrapper-->*/}
+                                <div className="mb-1">
+                                    {/*<!--begin::Label-->*/}
+                                    <label className="form-label fw-bolder text-dark fs-6 required">New Password</label>
+                                    {/*<!--end::Label-->*/}
+                                    {/*<!--begin::Input wrapper-->*/}
+                                    <div className="position-relative mb-3">
+                                        <Field className="form-control form-control-lg form-control-solid" type={togglePassword.newPassword} name="newPassword" placeholder="Enter New Password" />
+                                        <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" onClick={() => showHide("new")}>
+                                            {togglePassword.newPassword == "password" ?
+                                                <i className="bi bi-eye fs-2"></i> :
+                                                <i className="bi bi-eye-slash fs-2"></i>}
+
+                                        </span>
+                                    </div>
+                                    {/*<!--end::Input wrapper-->*/}
+                                    <ErrorMessage name="newPassword" component="span" className='d-block text-danger' />
+
+
+                                </div>
+                                {/*<!--end::Wrapper-->*/}
+
+                            </div>
+                            {/*<!--end::Input group=-->*/}
+
+                            {/*<!--begin::Input group-->*/}
+                            <div className="mb-10 fv-row">
+                                {/*<!--begin::Wrapper-->*/}
+                                <div className="mb-1">
+                                    {/*<!--begin::Label-->*/}
+                                    <label className="form-label fw-bolder text-dark fs-6 required">Confirm New Password</label>
+                                    {/*<!--end::Label-->*/}
+                                    <Field className="form-control form-control-lg form-control-solid" type={togglePassword.newPassword} name="confirmNewPassword" placeholder="Confirm New Password" />
+                                    <ErrorMessage name="confirmNewPassword" component="span" className='d-block text-danger' />
+
+                                </div>
+                                {/*<!--end::Wrapper-->*/}
+
+                            </div>
+                            {/*<!--end::Input group-->*/}
+
+
+                            {/*<!--begin::Actions-->*/}
+                            <div className="text-end">
+                                <button type="submit"  className="btn btn-primary">
+                                    <span className="indicator-label">Change Password</span>
+                                    <span className="indicator-progress">Please wait...
+                                        <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            </div>
+                            {/*<!--end::Actions-->*/}
+                        </Form>
+
+                    </Formik>
+                </div>
+            </div>
+
+            <div class="separator my-10"></div>
+
 
             <div>
-                <Formik
-                    initialValues={{
-                        newPassword: '',
-                        confirmNewPassword: ''
-                    }}
-                    validationSchema={DisplayingErrorMessagesSchema}
-                    onSubmit={values => {
-                        dispatch(actionAuth.changePassword(values))
-                    }}
-                >
-                    <Form className="form w-50 mt-6" noValidate="novalidate" >
+                <h2>Delete Account</h2>
+
+                <div>
+                    <Formik
+                        initialValues={{
+                            reasons: '',
+                            otherReasons: ''
+                        }}
+                        validationSchema={Yup.object().shape({
+                            reasons: Yup.string().required('Reason Required !'),
+                            // otherReasons: Yup.string().required('Other Reasons Required !')
+                        })
+                        }
+                        onSubmit={values => {
+                            // dispatch(actionAuth.changePassword(values))
+                            dispatch(actionAuth.deleteAccount(navigate))
+                        }}
+                    >
+                        {({ values, setFieldValue, handleChange }) => <Form className="form w-50 mt-6" noValidate="novalidate" >
+
+                            {/*<!--begin::Input group-->*/}
+                            <div className="mb-10 fv-row">
+                                {/*<!--begin::Wrapper-->*/}
+                                <div className="mb-1">
+                                    {/*<!--begin::Label-->*/}
+                                    <label className="form-label fw-bolder text-dark fs-6 required">Specify Reason</label>
+                                    {/*<!--end::Label-->*/}
+                                    {/*<!--begin::Input wrapper-->*/}
+                                   
+
+                                    <SelectWithSearch name="reasons" 
+                                    options={[{ 'value': "I don't Need.", "label": "I don't Need." }, { 'value': "others", "label": "others" }]}
+                                    value={values.reasons}
+                                    onchange={e=>{
+                                        handleChange(e.value)
+                                        setFieldValue("reasons",e.value)
+                                    }} />
+                                    {/*<!--end::Input wrapper-->*/}
+                                    <ErrorMessage name="reasons" component="span" className='d-block text-danger' />
 
 
-                        {/*<!--begin::Input group-->*/}
-                        <div className="mb-10 fv-row">
-                            {/*<!--begin::Wrapper-->*/}
-                            <div className="mb-1">
-                                {/*<!--begin::Label-->*/}
-                                <label className="form-label fw-bolder text-dark fs-6 required">New Password</label>
-                                {/*<!--end::Label-->*/}
-                                {/*<!--begin::Input wrapper-->*/}
-                                <div className="position-relative mb-3">
-                                    <Field className="form-control form-control-lg form-control-solid" type={togglePassword.newPassword} name="newPassword" placeholder="Enter New Password" />
-                                    <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" onClick={() => showHide("new")}>
-                                        {togglePassword.newPassword == "password" ?
-                                            <i className="bi bi-eye fs-2"></i> :
-                                            <i className="bi bi-eye-slash fs-2"></i>}
-
-                                    </span>
                                 </div>
-                                {/*<!--end::Input wrapper-->*/}
-                                <ErrorMessage name="newPassword" component="span" className='d-block text-danger' />
-
+                                {/*<!--end::Wrapper-->*/}
 
                             </div>
-                            {/*<!--end::Wrapper-->*/}
+                            {/*<!--end::Input group=-->*/}
 
-                        </div>
-                        {/*<!--end::Input group=-->*/}
 
-                        {/*<!--begin::Input group-->*/}
-                        <div className="mb-10 fv-row">
-                            {/*<!--begin::Wrapper-->*/}
-                            <div className="mb-1">
-                                {/*<!--begin::Label-->*/}
-                                <label className="form-label fw-bolder text-dark fs-6 required">Confirm New Password</label>
-                                {/*<!--end::Label-->*/}
-                                <Field className="form-control form-control-lg form-control-solid" type={togglePassword.newPassword} name="confirmNewPassword" placeholder="Confirm New Password" />
-                                <ErrorMessage name="confirmNewPassword" component="span" className='d-block text-danger' />
+                            {values.reasons == "others" ?
+                                <>
+                                    {/*<!--begin::Input group-->*/}
+                                    <div div className="mb-10 fv-row">
+                                        {/*<!--begin::Wrapper-->*/}
+                                        <div className="mb-1">
+                                            {/*<!--begin::Label-->*/}
+                                            <label className="form-label fw-bolder text-dark fs-6">Other Reasons</label>
+                                            {/*<!--end::Label-->*/}
+                                            {/*<!--begin::Input wrapper-->*/}
+                                            <Field className="form-control form-control-lg form-control-solid" type='text' name="otherReasons" placeholder="Enter other reasons" />
 
+                                            {/*<!--end::Input wrapper-->*/}
+                                            <ErrorMessage name="otherReasons" component="span" className='d-block text-danger' />
+
+
+                                        </div>
+                                        {/*<!--end::Wrapper-->*/}
+
+                                    </div>
+                                    {/*<!--end::Input group=-->*/}
+                                </> : null
+                            }
+
+
+
+
+                            {/*<!--begin::Actions-->*/}
+                            <div className="text-end">
+                                <button type="submit"  className="btn btn-danger">
+                                    <span className="indicator-label">Delete Account</span>
+                                    <span className="indicator-progress">Please wait...
+                                        <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
                             </div>
-                            {/*<!--end::Wrapper-->*/}
+                            {/*<!--end::Actions-->*/}
+                        </Form>
 
-                        </div>
-                        {/*<!--end::Input group-->*/}
+                        }
 
-
-                        {/*<!--begin::Actions-->*/}
-                        <div className="text-end">
-                            <button type="submit" id="kt_sign_up_submit" className="btn btn-lg btn-primary">
-                                <span className="indicator-label">Change Password</span>
-                                <span className="indicator-progress">Please wait...
-                                    <span className="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                        {/*<!--end::Actions-->*/}
-                    </Form>
-
-                </Formik>
+                    </Formik>
+                </div>
             </div>
 
 
@@ -122,7 +224,10 @@ function Settings() {
 
 
 
-        </Layout>)
+
+
+
+        </Layout >)
 }
 
 export default Settings

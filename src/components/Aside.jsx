@@ -1,32 +1,36 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-const asideStye ={
-    display:"flex",
-    position:"fixed",
+import * as actionAuth from '../store/actionCreator/authAction'
+
+const asideStye = {
+    display: "flex",
+    position: "fixed",
     top: 0,
     left: 0,
     zIndex: 100,
     bottom: 0,
-    transition:"0.3s ease-in-out"
-    
+    transition: "0.3s ease-in-out"
+
 }
 
-const zerow ={
-    width:"fit-content",
-    transition:"0.3s ease-in-out"
+const zerow = {
+    width: "fit-content",
+    transition: "0.3s ease-in-out"
 }
 
 const Aside = (props) => {
 
-    
+    let dispatch = useDispatch()
+    let navigate = useNavigate()
 
 
     return (
         <>
 
-            <div onClick={props.clicked} className='bg-secondary bg-opacity-75 h-100 w-100' style={props.mobileMenuToggle ? asideStye : {display:'none'}}></div>
-            <div className="aside card" style={props.mobileMenuToggle ? asideStye : zerow} >
+            <div onClick={props.clicked} className='bg-secondary bg-opacity-75 h-100 w-100' style={props.mobileMenuToggle ? asideStye : { display: 'none' }}></div>
+            <div className="aside card" style={props.mobileMenuToggle ? asideStye : null} >
                 {/* <!--begin::Aside menu--> */}
                 <div className="aside-menu flex-column-fluid px-5">
                     {/* <!--begin::Aside Menu--> */}
@@ -131,7 +135,7 @@ const Aside = (props) => {
 
 
 
-                            
+
 
 
                         </div>
@@ -142,17 +146,18 @@ const Aside = (props) => {
 
                 {/* <!--begin::Footer--> */}
                 <div className="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-                    <a href="../../demo14/dist/documentation/getting-started.html" className="btn btn-bg-light btn-color-gray-500 btn-active-color-gray-900 w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
-                        <span className="btn-label">Docs &amp; Components</span>
-                        {/* <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg--> */}
-                        <span className="svg-icon btn-icon svg-icon-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM15 17C15 16.4 14.6 16 14 16H8C7.4 16 7 16.4 7 17C7 17.6 7.4 18 8 18H14C14.6 18 15 17.6 15 17ZM17 12C17 11.4 16.6 11 16 11H8C7.4 11 7 11.4 7 12C7 12.6 7.4 13 8 13H16C16.6 13 17 12.6 17 12ZM17 7C17 6.4 16.6 6 16 6H8C7.4 6 7 6.4 7 7C7 7.6 7.4 8 8 8H16C16.6 8 17 7.6 17 7Z" fill="black" />
-                                <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black" />
-                            </svg>
-                        </span>
+                    <button onClick={() => dispatch(actionAuth.signout(navigate))} className="btn btn-bg-light btn-color-gray-500 btn-active-color-gray-900 w-100">
+                        {/* <!--begin::Svg Icon | path: assets/media/icons/duotune/arrows/arr077.svg--> */}
+                        <span class="svg-icon btn-icon svg-icon-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.3" x="4" y="11" width="12" height="2" rx="1" fill="currentColor" />
+                            <path d="M5.86875 11.6927L7.62435 10.2297C8.09457 9.83785 8.12683 9.12683 7.69401 8.69401C7.3043 8.3043 6.67836 8.28591 6.26643 8.65206L3.34084 11.2526C2.89332 11.6504 2.89332 12.3496 3.34084 12.7474L6.26643 15.3479C6.67836 15.7141 7.3043 15.6957 7.69401 15.306C8.12683 14.8732 8.09458 14.1621 7.62435 13.7703L5.86875 12.3073C5.67684 12.1474 5.67684 11.8526 5.86875 11.6927Z" fill="currentColor" />
+                            <path d="M8 5V6C8 6.55228 8.44772 7 9 7C9.55228 7 10 6.55228 10 6C10 5.44772 10.4477 5 11 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H11C10.4477 19 10 18.5523 10 18C10 17.4477 9.55228 17 9 17C8.44772 17 8 17.4477 8 18V19C8 20.1046 8.89543 21 10 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H10C8.89543 3 8 3.89543 8 5Z" fill="#C4C4C4" />
+                        </svg></span>
                         {/* <!--end::Svg Icon--> */}
-                    </a>
+
+                        <span className="btn-label">Sign Out</span>
+
+                    </button>
                 </div>
                 {/* <!--end::Footer--> */}
             </div>

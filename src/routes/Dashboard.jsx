@@ -24,13 +24,20 @@ function Dashboard() {
 
 
   const [totalNumberOfUserShare, setTotalNumberOfUserShare] = useState()
+  const [totalAmountOfUserShare, setTotalAmountOfUserShare] = useState()
+
   useEffect(() => {
     let totalNumberofShares = 0
+    let totalAmountofShares = 0
 
     for (let i = 0; i < userShares.length; i++) {
       totalNumberofShares = totalNumberofShares + userShares[i].quantity
+      totalAmountofShares = totalAmountofShares + userShares[i].totalAmount
+
     }
     setTotalNumberOfUserShare(totalNumberofShares)
+    setTotalAmountOfUserShare(totalAmountofShares)
+
   }, [userShares])
 
 
@@ -132,11 +139,35 @@ function Dashboard() {
 
                 </div>
               </div>
-              <div className="card-body py-5">
-              </div>
-              <div className="card-footer">
-                <span className='fw-bolder'>Total :</span> 10,000 Rs
-              </div>
+              {userShares ?
+                <>
+                  {userShares.length == "0" ?
+                    <h4 className='text-center py-8'>Start Adding !</h4> :
+                    <>
+                      <div className="card-body py-4">
+                        <div className='d-flex flex-wrap align-items-center justify-content-between'>
+                          <div>
+                            <span className='fw-bolder'>No. of Companies : </span>{userShares.length}
+
+                          </div>
+                          <div>
+                            <span className='fw-bolder'>Total :</span> {totalAmountOfUserShare} Rs
+                          </div>
+
+                        </div>
+
+
+
+                      </div>
+                      <div className="card-footer text-center">
+                        <Link className='btn btn-flush btn-link' to={"/portfolio"}>View All</Link>
+                      </div>
+                    </>
+                  }
+                </> :
+                <Loader />
+              }
+              
             </div>
           </div>
 
