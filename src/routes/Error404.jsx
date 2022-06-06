@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Error404() {
     return (
@@ -14,7 +15,7 @@ function Error404() {
                     <h1 class="fw-bold mb-10" style={{"color": "#A3A3C7"}}>Seems there is nothing here</h1>
                    {/*--end::Message-*/}
                    {/*--begin::Link-*/}
-                    <a href="../../demo14/dist/index.html" class="btn btn-primary">Return Home</a>
+                    <Link to={"/"} class="btn btn-primary">Return Home</Link>
                    {/*--end::Link-*/}
                 </div>
                {/*--end::Authentication - 404 Page-*/}

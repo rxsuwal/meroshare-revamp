@@ -55,7 +55,7 @@ export const Register = (props) => {
                 {/*<!--begin::Authentication - Sign-up -->*/}
                 <div className="d-flex flex-column flex-lg-row flex-column-fluid">
                     {/*<!--begin::Aside-->*/}
-                    <div className="d-none d-lg-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style={{ "backgroundColor": "#F2C98A" }}>
+                    <div className="d-none d-lg-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style={{ "backgroundColor": "#F2C98A", minHeight: "100vh" }}>
                         {/*<!--begin::Wrapper-->*/}
                         <div className="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
                             {/*<!--begin::Content-->*/}
@@ -66,10 +66,10 @@ export const Register = (props) => {
                                 </a>
                                 {/*<!--end::Logo-->*/}
                                 {/*<!--begin::Title-->*/}
-                                <h1 className="fw-bolder fs-2qx pb-5 pb-md-10" style={{ "color": "#986923" }}>Welcome to Metronic</h1>
+                                <h1 className="fw-bolder fs-2qx pb-5 pb-md-10" style={{ "color": "#986923" }}>Welcome to MeroShare Revamped</h1>
                                 {/*<!--end::Title-->*/}
                                 {/*<!--begin::Description-->*/}
-                                <p className="fw-bold fs-2" style={{ "color": "#986923" }}>Discover Amazing Metronic
+                                <p className="fw-bold fs-2" style={{ "color": "#986923" }}>Discover Amazing Meroshare
                                     <br />with great build tools
                                 </p>
                                 {/*<!--end::Description-->*/}
@@ -111,7 +111,7 @@ export const Register = (props) => {
                                                 {/*<!--end::Title-->*/}
                                                 {/*<!--begin::Link-->*/}
                                                 <div className="text-gray-400 fw-bold fs-4">Already have an account?
-                                                    <Link to='/' className="link-primary fw-bolder">Sign in here</Link>
+                                                    <Link to='/' className="link-primary fw-bolder ms-4">Sign in here</Link>
                                                 </div>
                                                 {/*<!--end::Link-->*/}
                                             </div>
@@ -122,7 +122,7 @@ export const Register = (props) => {
                                             <div className="fv-row mb-7">
                                                 <label className="form-label fw-bolder text-dark fs-6">Email</label>
 
-                                                <Field className="form-control form-control-lg form-control-solid" type="text" name="name" placeholder="name" />
+                                                <Field className="form-control form-control-lg form-control-solid" type="text" name="name" placeholder="Enter Name" />
                                                 <ErrorMessage name="name" component="span" className='d-block text-danger' />
 
                                             </div>
@@ -133,7 +133,7 @@ export const Register = (props) => {
                                             <div className="fv-row mb-7">
                                                 <label className="form-label fw-bolder text-dark fs-6">Email</label>
 
-                                                <Field className="form-control form-control-lg form-control-solid" type="email" name="email" placeholder="email" />
+                                                <Field className="form-control form-control-lg form-control-solid" type="email" name="email" placeholder="Enter Email" />
                                                 <ErrorMessage name="email" component="span" className='d-block text-danger' />
 
                                             </div>
@@ -145,17 +145,9 @@ export const Register = (props) => {
                                                     {/*<!--begin::Label-->*/}
                                                     <label className="form-label fw-bolder text-dark fs-6">Password</label>
                                                     {/*<!--end::Label-->*/}
-                                                    <Field className="form-control form-control-lg form-control-solid" type="password" name="password" placeholder="password" />
+                                                    <Field className="form-control form-control-lg form-control-solid" type="password" name="password" placeholder="Enter password" />
                                                     <ErrorMessage name="password" component="span" className='d-block text-danger' />
-                                                    {/*<!--begin::Input wrapper-->*/}
-                                                    {/* <div className="position-relative mb-3">
-                                                        <input className="form-control form-control-lg form-control-solid" type="password" value={user?.password} onChange={formDataOnChange} placeholder="" confirm-password name="password" autoComplete="off" />
-                                                        <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                                                            <i className="bi bi-eye-slash fs-2"></i>
-                                                            <i className="bi bi-eye fs-2 d-none"></i>
-                                                        </span>
-                                                    </div> */}
-                                                    {/*<!--end::Input wrapper-->*/}
+                                             
 
                                                 </div>
                                                 {/*<!--end::Wrapper-->*/}
@@ -204,9 +196,9 @@ export const Register = (props) => {
                         <div className="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
                             {/*<!--begin::Links-->*/}
                             <div className="d-flex flex-center fw-bold fs-6">
-                                <a href="https://keenthemes.com" className="text-muted text-hover-primary px-2" target="_blank">About</a>
-                                <a href="https://keenthemes.com/support" className="text-muted text-hover-primary px-2" target="_blank">Support</a>
-                                <a href="https://1.envato.market/EA4JP" className="text-muted text-hover-primary px-2" target="_blank">Purchase</a>
+                                <Link to={"/about"} className="text-muted text-hover-primary px-2" target="_blank">About</Link>
+                                <a href="#!" className="text-muted text-hover-primary px-2" target="_blank">Support</a>
+                                <a href="#!" className="text-muted text-hover-primary px-2" target="_blank">Privacy Policy</a>
                             </div>
                             {/*<!--end::Links-->*/}
                         </div>

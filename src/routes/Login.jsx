@@ -1,10 +1,9 @@
 import { Field, Form, Formik, ErrorMessage } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector, connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import * as Yup from 'yup';
-
 
 import * as actionAuth from "../store/actionCreator/authAction"
 
@@ -50,13 +49,13 @@ function Login(props) {
     // < !--begin:: Main-- >
     <div className="d-flex flex-column flex-root">
       {/* {/* <!--begin::Authentication - Sign-in --> */}
-      <div className="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style={{ "backgroundImage": "url(assets/media/illustrations/sketchy-1/14.png" }}>
+      <div className="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style={{ "backgroundImage": "url(assets/media/illustrations/sketchy-1/14.png",minHeight:"100vh" }}>
         {/* <!--begin::Content--> */}
         <div className="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
           {/* <!--begin::Logo--> */}
-          <a href="../../demo14/dist/index.html" className="mb-12">
-            <img alt="Logo" src="assets/media/logos/logo-1.svg" className="h-40px" />
-          </a>
+          <Link to={"/"} className="mb-12">
+            <img alt="Logo" src="assets/media/logos/logo-2.svg" className="h-40px" />
+          </Link>
           {/* <!--end::Logo--> */}
           {/* <!--begin::Wrapper--> */}
           <div className="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
@@ -75,11 +74,11 @@ function Login(props) {
                 {/*<!--begin::Heading-->*/}
                 <div className="mb-10 text-center">
                   {/*<!--begin::Title-->*/}
-                  <h1 className="text-dark mb-3">Sign In to Metronic</h1>
+                  <h1 className="text-dark mb-3">Sign In to Meroshare Revamped</h1>
                   {/*<!--end::Title-->*/}
                   {/*<!--begin::Link-->*/}
                   <div className="text-gray-400 fw-bold fs-4">New Here?
-                    <Link to='/register' className="link-primary fw-bolder">Create an Account</Link>
+                    <Link to='/register' className="link-primary fw-bolder ms-4">Create an Account</Link>
                   </div>
                   {/*<!--end::Link-->*/}
                 </div>
@@ -90,7 +89,7 @@ function Login(props) {
                 <div className="fv-row mb-7">
                   <label className="form-label fw-bolder text-dark fs-6">Email</label>
 
-                  <Field className="form-control form-control-lg form-control-solid" type="email" name="email" placeholder="email" />
+                  <Field className="form-control form-control-lg form-control-solid" type="email" name="email" placeholder="Enter mail" />
                   <ErrorMessage name="email" component="span" className='d-block text-danger' />
 
                 </div>
@@ -105,8 +104,8 @@ function Login(props) {
                     {/*<!--begin::Input wrapper-->*/}
 
                     <div className="position-relative mb-3">
-                      <Field className="form-control form-control-lg form-control-solid" type={password} name="password" placeholder="password" />
-                      <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" onClick={() => showHide("new")}>
+                      <Field className="form-control form-control-lg form-control-solid" type={password} name="password" placeholder="Enter Password" />
+                      <span className="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" onClick={() => showHide()}>
                         <i className="bi bi-eye-slash fs-2"></i>
                         <i className="bi bi-eye fs-2 d-none"></i>
                       </span>
@@ -143,9 +142,9 @@ function Login(props) {
         <div className="d-flex flex-center flex-column-auto p-10">
           {/* <!--begin::Links--> */}
           <div className="d-flex align-items-center fw-bold fs-6">
-            <a href="https://keenthemes.com" className="text-muted text-hover-primary px-2">About</a>
-            <a href="mailto:support@keenthemes.com" className="text-muted text-hover-primary px-2">Contact</a>
-            <a href="https://1.envato.market/EA4JP" className="text-muted text-hover-primary px-2">Contact Us</a>
+            <Link to={"/about"} className="text-muted text-hover-primary px-2">About</Link>
+            <a href="#!" className="text-muted text-hover-primary px-2">Contact</a>
+            <a href="#!" className="text-muted text-hover-primary px-2">Privacy Policy</a>
           </div>
           {/* <!--end::Links--> */}
         </div>

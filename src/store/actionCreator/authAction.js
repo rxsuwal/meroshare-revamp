@@ -9,8 +9,8 @@ import * as loader from './loaderAction'
 
 
 import { authInstance, authInstanceWithToken } from '../../axios/authInstance'
-import { useNavigate } from "react-router-dom"
 
+import Swal from 'sweetalert2'
 
 
 // AUTH CHECK
@@ -114,11 +114,6 @@ export const register = (payload, navigate) => {
 
         authInstance.post('accounts:signUp', data)
             .then(rspnse => {
-                // console.log(rspnse.data)
-                // localStorage.setItem("token", rspnse.data.idToken)
-                // localStorage.setItem("refreshTOken", rspnse.data.refreshToken)
-                // localStorage.setItem("expiryTime", rspnse.data.expiresIn)
-
 
                 dispatch(updateUser(payload.name, rspnse.data.idToken, navigate))
 
@@ -150,9 +145,7 @@ export const updateUser = (payload, token, navigate) => {
             .then(rspnse => {
                 console.log(rspnse.data)
                 toast.success('Registration Successfull !')
-
-                navigate('/')
-                dispatch(loader.setLoaderFalse())
+                dispatch(emailVerify(token, navigate))
 
 
             })
@@ -234,19 +227,59 @@ export const deleteAccount = (navigate) => {
         authInstanceWithToken.post('accounts:delete')
             .then(rspnse => {
                 response = rspnse
-            }).catch(err=>{
+            }).catch(err => {
                 response = err.response
-            }).then(()=>{
-                if(response.status =="200"){
+            }).then(() => {
+                if (response.status == "200") {
                     toast.success("Account delete Successful !")
 
                     dispatch(signout(navigate))
                     dispatch(loader.setLoaderFalse())
 
-                } else if(response.status !="200"){
+                } else if (response.status != "200") {
                     dispatch(loader.setLoaderFalse())
 
                     toast.error(response.data.error.message + '!')
+                }
+            })
+    }
+}
+
+
+// EMAIL VERIFICATION
+
+export const emailVerify = (token, navigate) => {
+
+    return dispatch => {
+        let API_RESPONSE
+        authInstance.post('accounts:sendOobCode', { requestType: "VERIFY_EMAIL", idToken: token })
+            .then(rspnse => {
+                API_RESPONSE = rspnse
+            }).catch(err => {
+                API_RESPONSE = err.response
+            }).then(() => {
+                dispatch(loader.setLoaderFalse())
+
+                if (API_RESPONSE.status == "200") {
+                    Swal.fire({
+                       
+                        text: `Verification mail has been sent  to` + `${API_RESPONSE.data.email}` + `!`,
+                        icon: 'success',
+                        confirmButtonText: 'ok'
+                    }).then(result => {
+                        console.log(result)
+                        if (result.isConfirmed) {
+                            dispatch(navigate('/'))
+                        }
+                    })
+                } else if (API_RESPONSE.status != "200") {
+                    console.log(API_RESPONSE)
+                    Swal.fire({
+                        title: 'ERROR !',
+                        text:  `${API_RESPONSE.data.error.message}` + `!`,
+                        icon: 'error',
+                        confirmButtonText: 'ok'
+                    })
                 }
             })
     }

@@ -35,11 +35,10 @@ authInstanceWithToken.interceptors.request.use((config) => {
     config.data['idToken'] = store.getState().auth.token
     config.data['returnSecureToken'] = true
 
-
-
     return config
 
 })
+
 authInstanceWithToken.interceptors.response.use((response) => {
 
     return response

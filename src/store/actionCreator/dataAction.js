@@ -8,6 +8,7 @@ const setCompanies = (payload) => {
         payload: payload
     }
 }
+
 export const getCompanies = () => {
     return dispatch => {
         databaseInstancePublic.get('/companies.json')
@@ -44,8 +45,6 @@ export const getOpenings = () => {
                         id: key
                     })
                 }
-                console.log(openings)
-
                 dispatch(setOpenings(openings))
             }).catch(err => {
                 console.log(err)
@@ -56,6 +55,24 @@ export const getOpenings = () => {
 export const setOpenings = (payload) => {
     return {
         type: actionType.SET_OPENINGS,
+        payload: payload
+    }
+}
+
+export const getOpeningsDetail = (payload) => {
+    return dispatch => {
+        databaseInstancePublic.get(`openings/${payload}.json`)
+            .then(rspnse => {
+                dispatch(setOpeningsDetail(rspnse.data))
+            }).catch(err => {
+                console.log(err.response)
+            })
+    }
+}
+
+export const setOpeningsDetail = (payload) => {
+    return {
+        type: actionType.SET_OPENING_DETAIL,
         payload: payload
     }
 }

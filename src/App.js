@@ -13,6 +13,9 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Settings from './routes/Settings';
 import Loader from './components/Loader/Loader';
+import OpeningDetail from './routes/OpeningDetail';
+import Apply from './components/Apply';
+import About from './routes/About';
 
 function App() {
 
@@ -39,8 +42,17 @@ function App() {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/details" element={<Details />} />
               <Route path="/asba" element={<Asba />} />
+              <Route path='asba/opening:Id' element={<OpeningDetail />} >
+
+                <Route path='apply' element={<Apply />} />
+
+              </Route>
+
               <Route path="/shares" element={<Shares />} />
               <Route path="/settings" element={<Settings />} />
+
+              <Route path='/about' element={<About/>}/>
+
 
 
             </Routes>

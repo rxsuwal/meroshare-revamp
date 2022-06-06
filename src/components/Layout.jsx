@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react'
 
 import Header from './Header'
 import Aside from './Aside'
+import { useDispatch, useSelector } from 'react-redux'
+
+import * as actionAuth from '../store/actionCreator/authAction'
 
 const Layout = (props) => {
 
+    let dispatch = useDispatch()
     const [mobileMenuToggle, setMobileMenuToggle] = useState(false)
 
     const menuToggle = () => {
@@ -15,6 +19,11 @@ const Layout = (props) => {
         }
 
     }
+
+
+
+    const emailVerifyStatus = useSelector((state) => state?.auth?.userData?.users[0].emailVerified)
+    const token = useSelector((state) => state?.auth?.token)
 
 
 
@@ -77,7 +86,17 @@ const Layout = (props) => {
 
                                     <div className="card mb-5 mb-xxl-8">
                                         <div className="card-body">
-                                            {props.children}
+                                            {emailVerifyStatus ?
+                                                props.children :
+                                                <div className='d-flex align-items-center  justify-content-between flex-wrap'>
+                                                    <h4 className='mb-8 mb-md-0'>Email Not Verified</h4>
+                                                    <div>
+                                                        <span>Please check your mail for verification !</span> <br />
+                                                        <span>Make you check spam folder too !</span>
+
+                                                    </div>
+                                                    <button onClick={() => dispatch(actionAuth.emailVerify(token))} className="btn-sm btn btn-success">Resend Email verfication !</button>
+                                                </div>}
 
 
                                         </div>

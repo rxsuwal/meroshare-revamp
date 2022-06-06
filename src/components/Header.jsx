@@ -66,7 +66,7 @@ function Header(props) {
                     {/* <!--end::Aside  toggle--> */}
                     {/* <!--begin::Logo--> */}
                     <NavLink to="/">
-                        <img src="assets\media\logos\meroshare.png" alt="main-logo" className="h-25px h-lg-50px" />
+                        <img src="\assets\media\logos\meroshare.png" alt="main-logo" className="h-25px h-lg-50px" />
                     </NavLink>
 
                 </div>
@@ -123,10 +123,8 @@ function Header(props) {
                                 {/* <!--begin::Menu item--> */}
                                 <div className="menu-item px-5">
                                     <NavLink to={'/shares'} className="menu-link px-5">
-                                        <span className="menu-text">My Shares</span>
-                                        <span className="menu-badge">
-                                            <span className="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-                                        </span>
+                                        My Shares
+
                                     </NavLink>
                                 </div>
                                 {/* <!--end::Menu item--> */}
@@ -142,6 +140,13 @@ function Header(props) {
                                     <NavLink to={'/settings'} className="menu-link px-5">Account Settings</NavLink>
                                 </div>
                                 {/* <!--end::Menu item--> */}
+                                {/* <!--begin::Menu item--> */}
+                                <div className="menu-item px-5 my-1">
+                                    <NavLink to={'/about'} className="menu-link px-5">About</NavLink>
+                                </div>
+                                {/* <!--end::Menu item--> */}
+
+
                                 {/* <!--begin::Menu separator--> */}
                                 <div className="separator my-2"></div>
                                 {/* <!--end::Menu separator--> */}

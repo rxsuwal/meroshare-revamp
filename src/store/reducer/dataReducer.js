@@ -4,7 +4,8 @@ const initialState = {
     companies: '',
     provinces: "",
     districts: "",
-    openings: ""
+    openings: "",
+    openingsDetail: ""
 }
 
 export default (state = initialState, action) => {
@@ -20,14 +21,13 @@ export default (state = initialState, action) => {
                 ...state,
                 openings: action.payload
             }
-        case actionType.SIGN_OUT:
+
+        case actionType.SET_OPENING_DETAIL:
             return {
                 ...state,
-                companies: "",
-                provinces: "",
-                districts: "",
-                openings: ""
+                openingsDetail: action.payload
             }
+       
 
         default:
             return state
