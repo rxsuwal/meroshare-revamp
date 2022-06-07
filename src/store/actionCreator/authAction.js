@@ -269,7 +269,7 @@ export const emailVerify = (token, navigate) => {
                     }).then(result => {
                         console.log(result)
                         if (result.isConfirmed) {
-                            dispatch(navigate('/'))
+                            dispatch(signout(navigate))
                         }
                     })
                 } else if (API_RESPONSE.status != "200") {
